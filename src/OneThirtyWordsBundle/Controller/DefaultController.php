@@ -23,7 +23,10 @@ class DefaultController extends Controller
         if ($user) {
             $em = $this->getDoctrine()->getManager();
 
-            $post = $em->getRepository(Post::class)->findOneBy(['date' => new \DateTime('today')]);
+            $post = $em->getRepository(Post::class)->findOneBy([
+                'date' => new \DateTime('today'),
+                'user' => $user,
+            ]);
 
             if (!$post) {
                 $post = new Post();
@@ -39,6 +42,7 @@ class DefaultController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $data = $form->getData();
+                $data->setUser($user);
 
                 $em->persist($data);
                 $em->flush();

@@ -3,12 +3,14 @@
 namespace OneThirtyWordsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * Post
  *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="post", uniqueConstraints={@UniqueConstraint(name="user_date_unique", columns={"date", "user_id"})})
  * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\PostRepository")
+ *
  */
 class Post
 {
@@ -31,9 +33,17 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", unique=true)
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
+
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     */
+    private $user;
 
 
     /**
@@ -92,6 +102,30 @@ class Post
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Kingdom
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
 
