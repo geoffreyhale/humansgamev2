@@ -14,6 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return ['something' => 'value'];
+        $user = $this->getUser();
+        return ['user' => $user];
     }
 }
