@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Cron.KD{% endblock %}</title>
+    <title>{% block title %}130Words{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     {% block css %}
-        <link rel="stylesheet" href="{{ asset('bundles/cronkd/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/cronkd/css/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/onethirtywords/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/onethirtywords/css/font-awesome.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -15,17 +15,17 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cronkd-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#onethirtywords-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('homepage') }}">CronKD</a>
+                <a class="navbar-brand" href="{{ path('homepage') }}">130Words</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="cronkd-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="onethirtywords-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('homepage') }}" class="navbar-link">Home</a></li>
                 </ul>
@@ -44,8 +44,8 @@
 {% endblock %}
 {% block content %}{% endblock %}
 {% block js %}
-    <script src="{{ asset('bundles/cronkd/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('bundles/cronkd/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/onethirtywords/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/onethirtywords/js/bootstrap.js') }}"></script>
 {% endblock %}
 </body>
 </html>

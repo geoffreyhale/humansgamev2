@@ -1,6 +1,6 @@
 <?php
 
-namespace CronkdBundle\Controller;
+namespace OneThirtyWordsBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
-     * @Template("CronkdBundle:Default:index.html.twig")
+     * @Template("OneThirtyWordsBundle:Default:index.html.twig")
      */
     public function indexAction()
     {

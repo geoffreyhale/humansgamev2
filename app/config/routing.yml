@@ -1,5 +1,5 @@
-cronkd:
-    resource: "@CronkdBundle/Controller/"
+onethirtywords:
+    resource: "@OneThirtyWordsBundle/Controller/"
     type:     annotation
     prefix:   /
 

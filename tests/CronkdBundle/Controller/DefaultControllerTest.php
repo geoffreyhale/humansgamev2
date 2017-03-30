@@ -1,6 +1,6 @@
 <?php
 
-namespace CronkdBundle\Tests\Controller;
+namespace OneThirtyWordsBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

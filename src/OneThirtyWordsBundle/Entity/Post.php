@@ -1,6 +1,6 @@
 <?php
 
-namespace CronkdBundle\Entity;
+namespace OneThirtyWordsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Post
  *
  * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="CronkdBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\PostRepository")
  */
 class Post
 {

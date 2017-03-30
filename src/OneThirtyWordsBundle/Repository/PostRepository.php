@@ -1,6 +1,6 @@
 <?php
 
-namespace CronkdBundle\Repository;
+namespace OneThirtyWordsBundle\Repository;
 
 /**
  * PostRepository
