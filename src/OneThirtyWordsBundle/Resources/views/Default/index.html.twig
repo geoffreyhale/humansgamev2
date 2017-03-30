@@ -1,8 +1,22 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <h1>Hello World, {{ user }}!</h1>
-    <p>
-        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-    </p>
+
+    {% if form is defined %}
+        <div class="row-fluid">
+            <div class="col-sm-12">
+                <h3>{{ date }}</h3>
+                <hr />
+                {{ form_start(form, {'attr': {'class': 'form post'}}) }}
+                <div class="form-group">
+                    {{ form_widget(form.body, {'attr': {'class': 'form-control body'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
