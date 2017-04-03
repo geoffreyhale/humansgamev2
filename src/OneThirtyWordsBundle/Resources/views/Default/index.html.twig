@@ -15,6 +15,7 @@
                     {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
                 </div>
                 {{ form_end(form) }}
+                {% include 'OneThirtyWordsBundle:Widgets:wordcount.html.twig' %}
             </div>
         </div>
     {% endif %}
