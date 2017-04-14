@@ -31,6 +31,13 @@ class Post
     private $body;
 
     /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
+     */
+    private $category;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
@@ -92,6 +99,30 @@ class Post
         $this->date = $date;
 
         return $this;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Post
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**

@@ -4,8 +4,9 @@
 
     {% if form is defined %}
         <div class="row-fluid">
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <h3>{{ date }}</h3>
+                <strong>Category:</strong> {{ category.name }}
                 <hr />
                 {{ form_start(form, {'attr': {'class': 'form post'}}) }}
                 <div class="form-group">

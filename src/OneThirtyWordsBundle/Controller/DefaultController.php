@@ -2,7 +2,9 @@
 
 namespace OneThirtyWordsBundle\Controller;
 
+use OneThirtyWordsBundle\Entity\Category;
 use OneThirtyWordsBundle\Entity\Post;
+use OneThirtyWordsBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,11 +20,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var User $user */
         $user = $this->getUser();
 
         if ($user) {
-            $em = $this->getDoctrine()->getManager();
+            if ($user->getCategories()->isEmpty()) {
+                $category = (new Category())
+                    ->setName('Default')
+                    ->setUser($user);
+                $em->persist($category);
+                $em->flush();
+            }
 
+            /** @var Post $post */
             $post = $em->getRepository(Post::class)->findOneBy([
                 'date' => new \DateTime('today'),
                 'user' => $user,
@@ -33,6 +45,10 @@ class DefaultController extends Controller
                 $post->setDate(new \DateTime);
             }
 
+            if (!$post->getCategory()) {
+                $post->setCategory($user->getCategories()->first());
+            }
+
             $form = $this->createFormBuilder($post)
                 ->add('body', TextareaType::class)
                 ->add('submit', SubmitType::class, array('label' => 'Submit Post'))
@@ -41,8 +57,10 @@ class DefaultController extends Controller
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $data = $form->getData();
-                $data->setUser($user);
+                /** @var Post $data */
+                $data = $form->getData()
+                    ->setCategory($user->getCategories()->first())
+                    ->setUser($user);
 
                 $em->persist($data);
                 $em->flush();
@@ -50,8 +68,9 @@ class DefaultController extends Controller
         }
 
         return [
-            'form' => $form->createView(),
+            'category' => $post->getCategory(),
             'date' => $post->getDate()->format('l, F jS'),
+            'form' => $form->createView(),
             'user' => $user,
         ];
     }
