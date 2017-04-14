@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <h3>Stats</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for name, category in categories %}
+                        <td>{{ name }}</td>
+                        {% for timestamp, post in category %}
+                            <td>{{ timestamp|date('m/d') }}: <strong>{{ post }}</strong></td>
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

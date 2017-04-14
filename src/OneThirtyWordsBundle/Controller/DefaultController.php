@@ -74,4 +74,36 @@ class DefaultController extends Controller
             'user' => $user,
         ];
     }
+
+    /**
+     * @Route("/stats", name="stats")
+     * @Template("OneThirtyWordsBundle:Default:stats.html.twig")
+     */
+    public function statsAction(Request $request)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $categories = $user->getCategories();
+
+        $postsByCategoryByDate = [];
+
+        /** @var Category $category */
+        foreach ($categories as $category) {
+            $categoryPostsByDate = [];
+
+            $posts = $category->getPosts();
+
+            /** @var Post $post */
+            foreach($posts as $post) {
+                $categoryPostsByDate[$post->getDate()->getTimestamp()] = str_word_count($post->getBody());
+            }
+
+            $postsByCategoryByDate[$category->getName()] = $categoryPostsByDate;
+        }
+
+        return [
+            'categories' => $postsByCategoryByDate
+        ];
+    }
 }
