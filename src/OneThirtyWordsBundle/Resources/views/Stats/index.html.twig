@@ -8,18 +8,17 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Category</th>
+                    <th>User ID</th>
+                    <th>Word Count</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for userId, user in users %}
                 <tr>
-                    {% for name, category in categories %}
-                        <td>{{ name }}</td>
-                        {% for timestamp, post in category %}
-                            <td>{{ timestamp|date('m/d') }}: <strong>{{ post }}</strong></td>
-                        {% endfor %}
-                    {% endfor %}
+                    <td>{{ userId }}</td>
+                    <td>{{ user.wordcount }}</td>
                 </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
