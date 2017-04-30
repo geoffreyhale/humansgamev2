@@ -45,7 +45,7 @@ class StatsController extends Controller
             }
         }
 
-        usort($usersData, function ($u1, $u2) {
+        uasort($usersData, function ($u1, $u2) {
             if ($u2['wordcount'] == $u1['wordcount']) return 0;
             return $u2['wordcount'] < $u1['wordcount'] ? -1 : 1;
         });
