@@ -1,5 +1,5 @@
 $(function() {
-    Wordcount.init(".count_this", "#wordcount");
+    Wordcount.init(".count_this", ".wordcount");
 });
 
 var Wordcount = (function() {
