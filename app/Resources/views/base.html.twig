@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="onethirtywords-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('homepage') }}" class="navbar-link">Home</a></li>
-                    <li><a href="{{ path('stats') }}" class="navbar-link">Stats</a></li>
+                    <li><a href="{{ path('posts') }}" class="navbar-link">Posts</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -44,7 +44,10 @@
         </div><!-- /.container-fluid -->
     </nav>
 {% endblock %}
-{% block content %}{% endblock %}
+
+<div class="container-fluid">
+    {% block content %}{% endblock %}
+</div>
 {% block js %}
     <script src="{{ asset('bundles/onethirtywords/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/onethirtywords/js/bootstrap.js') }}"></script>

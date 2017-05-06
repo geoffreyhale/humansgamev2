@@ -8,13 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @Route("/post")
- */
 class PostController extends Controller
 {
     /**
-     * @Route("/{post}", name="post")
+     * @Route("/post/{post}", name="post")
      * @Template("OneThirtyWordsBundle:Post:index.html.twig")
      */
     public function indexAction(Post $post)
@@ -25,6 +22,21 @@ class PostController extends Controller
 
         return [
             'post' => $post,
+        ];
+    }
+
+    /**
+     * @Route("/posts", name="posts")
+     * @Template("OneThirtyWordsBundle:Post:posts.html.twig")
+     */
+    public function postsAction()
+    {
+        $posts = $this->getDoctrine()->getManager()->getRepository(Post::class)->findBy([
+            'user' => $this->getUser()
+        ]);
+
+        return [
+            'posts' => array_reverse($posts),
         ];
     }
 }

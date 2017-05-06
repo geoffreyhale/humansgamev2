@@ -1,18 +1,18 @@
+.title {
+    font-size: 30px;
+}
 .post {
     display: flex;
     justify-content: center;
 }
-.post .post-body {
+.post-body {
     font-size: 20px;
     width: 600px;
 }
-.post .post-body textarea {
+.post-body textarea {
     height: 400px;
     resize: none;
 }
-.post .post-category {
+.post-category {
     color: grey;
-}
-.post .post-date {
-    font-size: 30px;
 }

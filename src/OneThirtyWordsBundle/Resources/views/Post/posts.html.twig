@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>Link</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Body</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td><a href="{{ path('post', {'post' : post.id}) }}">post/{{ post.id }}</a></td>
+                <td title="{{ post.date|date('l, F jS') }}">{{ post.date|date('Ymd') }}</td>
+                <td class="post-category">{{ post.category ? post.category.name : "Unknown"}}</td>
+                <td>{{ post.body[:100] ~ '...' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
