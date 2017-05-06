@@ -68,10 +68,8 @@ class DefaultController extends Controller
         }
 
         return [
-            'category' => $post->getCategory(),
-            'date' => $post->getDate()->format('l, F jS'),
             'form' => $form->createView(),
-            'user' => $user,
+            'post' => $post,
         ];
     }
 }

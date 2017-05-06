@@ -1,24 +1,33 @@
 $(function() {
-    Wordcount.init("#form_body", "#wordcount");
+    Wordcount.init(".count_this", "#wordcount");
 });
 
 var Wordcount = (function() {
-    var textarea_selector,
-        count_selector,
-        offset;
+    let text_selector;
+    let count_selector;
+    let offset;
 
-    function init(_textarea_selector, _count_selector, _offset) {
-        textarea_selector = _textarea_selector;
+    function init(_text_selector, _count_selector, _offset) {
+        text_selector = _text_selector;
         count_selector = _count_selector;
         offset = _offset ? parseInt(_offset) : 0;
         updateDisplay();
-        $(textarea_selector).keyup(function() { updateDisplay() });
+        $(text_selector).keyup(function() { updateDisplay() });
+    }
+
+    function getText() {
+        let el = $(text_selector);
+        if (el[0].value !== undefined) {
+            return el.val();
+        } else {
+            return el.text();
+        }
     }
 
     function getWordCount() {
-        var text = $(textarea_selector).val();
-        var text_wordcount = text ? text.split(/[^\s\d_\+\-\.,!@#\$%\^&\*\(\);\\\/\|<>"]+/g).length - 1 : 0;
-        var final_wordcount = text_wordcount + offset;
+        let text = getText();
+        let text_wordcount = text ? text.split(/[^\s\d_\+\-\.,!@#\$%\^&\*\(\);\\\/\|<>"]+/g).length - 1 : 0;
+        let final_wordcount = text_wordcount + offset;
         return final_wordcount;
     }
 

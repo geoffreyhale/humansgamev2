@@ -1,5 +1,18 @@
-.post .body {
-    font-size: 16px;
-    height: 300px;
+.post {
+    display: flex;
+    justify-content: center;
+}
+.post .post-body {
+    font-size: 20px;
     width: 600px;
+}
+.post .post-body textarea {
+    height: 400px;
+    resize: none;
+}
+.post .post-category {
+    color: grey;
+}
+.post .post-date {
+    font-size: 30px;
 }
