@@ -31,9 +31,15 @@ class PostController extends Controller
      */
     public function postsAction()
     {
-        $posts = $this->getDoctrine()->getManager()->getRepository(Post::class)->findBy([
-            'user' => $this->getUser()
-        ]);
+        $posts = $this->getDoctrine()->getManager()->getRepository(Post::class)
+            ->findBy(
+                array(
+                    'user' => $this->getUser(),
+                ),
+                array(
+                    'date' => 'ASC',
+                )
+            );
 
         return [
             'posts' => array_reverse($posts),

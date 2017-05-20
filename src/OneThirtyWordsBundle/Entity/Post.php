@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 /**
  * Post
  *
- * @ORM\Table(name="post", uniqueConstraints={@UniqueConstraint(name="user_date_unique", columns={"date", "user_id"})})
+ * @ORM\Table(name="post", uniqueConstraints={@UniqueConstraint(name="user_date_category_unique", columns={"category_id", "date", "user_id"})})
  * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\PostRepository")
  *
  */
