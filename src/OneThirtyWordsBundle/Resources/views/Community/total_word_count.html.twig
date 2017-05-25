@@ -13,10 +13,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for userId, user in users %}
+                {% for user in users %}
                 <tr>
-                    <td>{{ userId }}</td>
-                    <td>{{ user.wordcount }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.wordcount|number_format }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

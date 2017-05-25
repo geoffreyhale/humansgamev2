@@ -18,10 +18,10 @@ use Symfony\Component\HttpFoundation\Request;
 class CommunityController extends Controller
 {
     /**
-     * @Route("/", name="community")
-     * @Template("OneThirtyWordsBundle:Community:index.html.twig")
+     * @Route("/total-word-count", name="communityTotalWordCount")
+     * @Template("OneThirtyWordsBundle:Community:total_word_count.html.twig")
      */
-    public function communityAction(Request $request)
+    public function communityTotalWordCountAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -31,7 +31,7 @@ class CommunityController extends Controller
 
         /** @var User $user */
         foreach ($users as $user) {
-            $usersData[$user->getId()] = ['wordcount' => 0];
+            $usersData[$user->getId()] = ['wordcount' => 0, 'username' => $user->getUsername()];
             $categories = $user->getCategories();
 
             /** @var Category $category */
