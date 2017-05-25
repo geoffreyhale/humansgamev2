@@ -13,19 +13,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/stats")
+ * @Route("/community")
  */
-class StatsController extends Controller
+class CommunityController extends Controller
 {
     /**
-     * @Route("/", name="stats")
-     * @Template("OneThirtyWordsBundle:Stats:index.html.twig")
+     * @Route("/", name="community")
+     * @Template("OneThirtyWordsBundle:Community:index.html.twig")
      */
-    public function statsAction(Request $request)
+    public function communityAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository(User::class)->findAll();
+        $users = $em->getRepository(User::class)->findBy(['enabled' => true]);
 
         $usersData = [];
 

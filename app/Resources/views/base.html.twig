@@ -29,7 +29,8 @@
             <div class="collapse navbar-collapse" id="onethirtywords-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('homepage') }}" class="navbar-link">Home</a></li>
-                    <li><a href="{{ path('posts') }}" class="navbar-link">Posts</a></li>
+                    <li><a href="{{ path('posts') }}" class="navbar-link">My Posts</a></li>
+                    <li><a href="{{ path('community') }}" class="navbar-link">Community</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
