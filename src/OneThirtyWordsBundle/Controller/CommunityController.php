@@ -8,8 +8,6 @@ use OneThirtyWordsBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,6 +15,28 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CommunityController extends Controller
 {
+    /**
+     * @Route("/recent", name="communityRecent")
+     * @Template("OneThirtyWordsBundle:Community:recent.html.twig")
+     */
+    public function communityRecentAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em->getRepository(Post::class)->getRecent();
+
+        $postsByDate = [];
+
+        /** @var Post $post */
+        foreach ($posts as $post) {
+            $postsByDate[$post->getDate()->format('Y-m-d')][] = $post;
+        }
+
+        return [
+            'postsByDate' => $postsByDate
+        ];
+    }
+
     /**
      * @Route("/total-word-count", name="communityTotalWordCount")
      * @Template("OneThirtyWordsBundle:Community:total_word_count.html.twig")

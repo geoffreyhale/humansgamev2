@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <h3>Recent Users</h3>
+            {% for dateString, posts in postsByDate %}
+                <h4>{{ dateString }}</h4>
+                <ul>
+                    {% for post in posts %}
+                        <li>{{ post.user }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

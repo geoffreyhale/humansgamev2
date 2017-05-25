@@ -10,4 +10,14 @@ namespace OneThirtyWordsBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getRecent()
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.user', 'u')
+            ->groupBy('p.date', 'u')
+            ->orderBy('p.date', 'DESC')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
 }
