@@ -17,7 +17,7 @@ var Wordcount = (function() {
 
     function getText() {
         let el = $(text_selector);
-        if (el[0].value !== undefined) {
+        if (el[0] && el[0].value !== undefined) {
             return el.val();
         } else {
             return el.text();
