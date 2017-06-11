@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <h1><i class="fa fa-folder" aria-hidden="true"></i> Categories</h1>
+    <ul class="list-group" style="display: table;">
+        {% for category in categories %}
+            <li class="list-group-item">
+                <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
+                <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
+            </li>
+        {%  endfor %}
+    </ul>
+{% endblock %}
