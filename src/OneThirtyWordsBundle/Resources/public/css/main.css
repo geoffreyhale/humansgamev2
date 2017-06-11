@@ -16,6 +16,9 @@ Bootstrap
 .post {
     justify-content: center;
 }
+.post-header {
+    margin-bottom: 20px;
+}
 .post-body {
     font-size: 20px;
 }
@@ -24,9 +27,7 @@ Bootstrap
     font-size: 20px;
     resize: none;
 }
-.post-category {
-    color: grey;
-}
+
 .wordcount {
     font-size: 24px;
 }

@@ -1,7 +1,10 @@
 <div class="row post">
-    <div class="post-meta col-xs-12 col-md-2">
-        <h3>{{ post.date|date('l, F jS') }}</h3>
-        <div class="post-category">Category: {{ post.category ? post.category.name : "Unknown"}}</div>
+    <div class="post-header col-xs-12 col-md-2">
+        <h1>{{ post.date|date('l, F jS') }}</h1>
+        <div>
+            <i class="fa fa-folder" aria-hidden="true"></i>
+            {{ post.category ? post.category.name : "Unknown"}}
+        </div>
     </div>
     <div class="post-body col-xs-12 col-md-8">
         {% if form is defined %}
@@ -15,7 +18,7 @@
             {{ form_end(form) }}
         {% endif %}
     </div>
-    <div class="post-stats col-xs-12 col-md-2">
+    <div class="col-xs-12 col-md-2">
         {% include 'OneThirtyWordsBundle:Widgets:wordcount.html.twig' %}
     </div>
 </div>
