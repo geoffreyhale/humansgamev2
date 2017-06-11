@@ -25,15 +25,15 @@ class CommunityController extends Controller
 
         $posts = $em->getRepository(Post::class)->getRecent();
 
-        $postsByDate = [];
+        $postsBatchedByDate = [];
 
         /** @var Post $post */
         foreach ($posts as $post) {
-            $postsByDate[$post->getDate()->format('Y-m-d')][] = $post;
+            $postsBatchedByDate[$post->getDate()->format('Y-m-d')][] = $post;
         }
 
         return [
-            'postsByDate' => $postsByDate
+            'postsBatchedByDate' => $postsBatchedByDate
         ];
     }
 
@@ -45,7 +45,7 @@ class CommunityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository(User::class)->findBy(['enabled' => true]);
+        $users = $em->getRepository(User::class)->findAll();
 
         $usersData = [];
 

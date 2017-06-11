@@ -1,17 +1,28 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <div class="row-fluid">
-        <div class="col-md-12">
-            <h1>Recent Users</h1>
-            {% for dateString, posts in postsByDate %}
-                <h4>{{ dateString }}</h4>
-                <ul>
+    <h1><i class="fa fa-users" aria-hidden="true"></i> Recent Posters</h1>
+    <table class="table table-borderless table-hover">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Users</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dateString, posts in postsBatchedByDate %}
+            <tr>
+                <td style="white-space: nowrap;">
+                    {{ posts[0].date|date('l, F jS, Y') }}
+                </td>
+                <td style="width: 100%;">
                     {% for post in posts %}
-                        <li>{{ post.user }}</li>
+                        {{ post.user }}
+                        {% if not loop.last %}, {% endif %}
                     {% endfor %}
-                </ul>
-            {% endfor %}
-        </div>
-    </div>
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
 {% endblock %}
