@@ -1,5 +1,39 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    {% include 'OneThirtyWordsBundle:Post:partial/edit.html.twig' %}
+    <h1><i class="fa fa-user" aria-hidden="true"></i> Hi, {{ user.username }}!</h1>
+
+    <p>You've written <strong><span class="{{ (wordcount >= 130) ? 'text-success' : 'text-danger' }}">{{ wordcount }} words</span></strong> today.</p>
+
+    <h2>Your Posts Today</h2>
+    <table class="table table-borderless table-hover">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>Words</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td style="white-space: nowrap;">
+                    <i class="fa fa-folder" aria-hidden="true"></i> {{ post.category.name }}
+                </td>
+                <td style="width: 100%;">
+                    <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+
+    <h2>Create New Post</h2>
+    <p>Select a Category</p>
+    <ul class="list-group" style="display: table;">
+        {% for category in categories %}
+            <li class="list-group-item">
+                <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}">{{ category.name }}</a>
+            </li>
+        {%  endfor %}
+    </ul>
 {% endblock %}
