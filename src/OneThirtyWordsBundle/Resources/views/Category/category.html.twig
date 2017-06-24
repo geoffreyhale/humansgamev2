@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1><i class="fa fa-folder" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
+    <p><a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit category</a></p>
     <table class="table table-borderless table-hover">
         <thead>
         <tr>
