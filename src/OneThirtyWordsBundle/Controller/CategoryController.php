@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}", name="category")
+     * @Route("/category/{id}", requirements={"id" = "\d+"}, name="category")
      * @Template("OneThirtyWordsBundle:Category:category.html.twig")
      */
     public function indexAction(Category $category)
@@ -36,6 +36,40 @@ class CategoryController extends Controller
         return [
             'category' => $category,
             'posts' => $posts,
+        ];
+    }
+
+    /**
+     * @Route("/category/new", name="newCategory")
+     * @Template("OneThirtyWordsBundle:Category:new.html.twig")
+     */
+    public function newCategoryAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $category = new Category();
+
+        $form = $this->createFormBuilder($category)
+            ->add('name', TextType::class)
+            ->add('submit', SubmitType::class, array('label' => 'Create'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $category = $form->getData();
+            $category->setUser($this->getUser());
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirectToRoute('category', array(
+                'id'  => $category->getId(),
+            ));
+        }
+
+        return [
+            'form' => $form->createView(),
+            'category' => $category,
         ];
     }
 
