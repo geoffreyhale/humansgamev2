@@ -62,9 +62,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category', array(
-                'id'  => $category->getId(),
-            ));
+            return $this->forward('OneThirtyWordsBundle:Category:categories');
         }
 
         return [
@@ -96,6 +94,8 @@ class CategoryController extends Controller
             $category = $form->getData();
             $em->persist($category);
             $em->flush();
+
+            return $this->forward('OneThirtyWordsBundle:Category:categories');
         }
 
         return [

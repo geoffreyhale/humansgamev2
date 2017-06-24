@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $form = $this->createFormBuilder($post)
             ->add('body', TextareaType::class)
-            ->add('submit', SubmitType::class, array('label' => 'Submit Post'))
+            ->add('submit', SubmitType::class, array('label' => 'Save'))
             ->getForm();
 
         $form->handleRequest($request);
