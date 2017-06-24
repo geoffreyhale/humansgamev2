@@ -37,11 +37,59 @@ class DefaultController extends Controller
             return $c2->getName() > $c1->getName() ? -1 : 1;
         });
 
+        /**
+         * Today Users
+         */
+        $todayUsers = [];
+
+        $postsToday = $em->getRepository(Post::class)->findBy([
+            'date' => new \DateTime('today'),
+        ]);
+
+        foreach ($postsToday as $post) {
+            if (!array_key_exists($post->getUser()->getUsername(), $todayUsers)) {
+                $todayUsers[$post->getUser()->getUsername()]['wordcount'] = 0;
+            }
+
+            $todayUsers[$post->getUser()->getUsername()]['wordcount'] += str_word_count($post->getBody());
+        }
+
+        // sort by wordcount
+        uasort($todayUsers, function ($u1, $u2) {
+            if ($u2['wordcount'] == $u1['wordcount']) return 0;
+            return $u2['wordcount'] > $u1['wordcount'] ? 1 : -1;
+        });
+
+        /**
+         * Yesterday Users
+         */
+        $yesterdayUsers = [];
+
+        $postsYesterday = $em->getRepository(Post::class)->findBy([
+            'date' => new \DateTime('yesterday'),
+        ]);
+
+        foreach ($postsYesterday as $post) {
+            if (!array_key_exists($post->getUser()->getUsername(), $yesterdayUsers)) {
+                $yesterdayUsers[$post->getUser()->getUsername()]['wordcount'] = 0;
+            }
+
+            $yesterdayUsers[$post->getUser()->getUsername()]['wordcount'] += str_word_count($post->getBody());
+        }
+
+        // sort by wordcount
+        uasort($yesterdayUsers, function ($u1, $u2) {
+            if ($u2['wordcount'] == $u1['wordcount']) return 0;
+            return $u2['wordcount'] > $u1['wordcount'] ? 1 : -1;
+        });
+
         return [
             'categories' => $categories,
             'posts' => $posts,
+            'todayUsers' => $todayUsers,
             'user' => $this->getUser(),
             'wordcount' => $wordcount,
+            'yesterdayUsers' => $yesterdayUsers,
         ];
     }
 }
