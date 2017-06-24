@@ -53,14 +53,8 @@ class PostController extends Controller
      * @Route("/post/{id}/edit", name="postEdit")
      * @Template("OneThirtyWordsBundle:Post:edit.html.twig")
      */
-    public function postEditAction(Request $request, $id)
+    public function postEditAction(Request $request, Post $post)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $post = $em->getRepository(Post::class)->findOneBy([
-            'id' => $id
-        ]);
-
         if ($post->getUser() !== $this->getUser()) {
             throw new \Exception("ACCESS DENIED: This is not your post.");
         }
@@ -68,6 +62,8 @@ class PostController extends Controller
         if ($post->getDate()->format('Ymd') != (new \DateTime)->format('Ymd')) {
             throw new \Exception("CANNOT EDIT: You can only edit posts written today.");
         }
+
+        $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($post)
             ->add('body', TextareaType::class)
