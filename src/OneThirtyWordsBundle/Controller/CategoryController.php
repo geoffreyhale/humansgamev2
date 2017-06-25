@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends Controller
@@ -85,6 +86,7 @@ class CategoryController extends Controller
 
         $form = $this->createFormBuilder($category)
             ->add('name', TextType::class)
+            ->add('hide', CheckboxType::class, array('required' => false))
             ->add('submit', SubmitType::class, array('label' => 'Update'))
             ->getForm();
 
@@ -95,7 +97,9 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->forward('OneThirtyWordsBundle:Category:categories');
+            return $this->redirectToRoute('category', array(
+                'id'  => $category->getId()
+            ));
         }
 
         return [
@@ -121,6 +125,7 @@ class CategoryController extends Controller
 
         foreach($categories as $category) {
             $categoriesViewArray[$category->getId()] = array(
+                'hide' => $category->isHide(),
                 'id' => $category->getId(),
                 'name' => $category->getName(),
                 'post_count' => $category->getPosts()->count(),

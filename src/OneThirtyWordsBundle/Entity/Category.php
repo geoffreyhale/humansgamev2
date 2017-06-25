@@ -45,6 +45,13 @@ class Category
     private $user;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="hide", type="boolean", options={"default" : 0})
+     */
+    private $hide = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -68,7 +75,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return self
      */
     public function setName($name)
     {
@@ -92,7 +99,7 @@ class Category
      *
      * @param Post $post
      *
-     * @return Category
+     * @return self
      */
     public function addPost(Post $post)
     {
@@ -126,7 +133,7 @@ class Category
      *
      * @param User $user
      *
-     * @return Kingdom
+     * @return self
      */
     public function setUser(User $user = null)
     {
@@ -143,6 +150,26 @@ class Category
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHide()
+    {
+        return $this->hide;
+    }
+
+    /**
+     * @param bool $hide
+     *
+     * @return self
+     */
+    public function setHide($hide)
+    {
+        $this->hide = $hide;
+
+        return $this;
     }
 }
 

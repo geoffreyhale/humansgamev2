@@ -2,13 +2,29 @@
 
 {% block content %}
     <h1><i class="fa fa-folder" aria-hidden="true"></i> Categories</h1>
+
+    <p><a href="{{ path('newCategory') }}">Create New Category</a></p>
+
     <ul class="list-group" style="display: table;">
         {% for category in categories %}
-            <li class="list-group-item">
-                <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
-                <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
-            </li>
+            {% if category.hide != true %}
+                <li class="list-group-item">
+                    <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
+                    <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
+                </li>
+            {% endif %}
         {%  endfor %}
     </ul>
-    <p><a href="{{ path('newCategory') }}">New Category</a></p>
+
+    <h2>Hidden</h2>
+    <ul class="list-group" style="display: table;">
+        {% for category in categories %}
+            {% if category.hide == true %}
+                <li class="list-group-item">
+                    <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
+                    <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
+                </li>
+            {% endif %}
+        {%  endfor %}
+    </ul>
 {% endblock %}

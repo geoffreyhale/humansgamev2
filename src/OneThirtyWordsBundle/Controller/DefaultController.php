@@ -2,6 +2,7 @@
 
 namespace OneThirtyWordsBundle\Controller;
 
+use OneThirtyWordsBundle\Entity\Category;
 use OneThirtyWordsBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +31,10 @@ class DefaultController extends Controller
             $wordcount += str_word_count($post->getBody());
         }
 
-        $categories = $this->getUser()->getCategories()->getValues();
+        $categories = $em->getRepository(Category::class)->findBy([
+            'user' => $this->getUser(),
+            'hide' => false,
+        ]);
 
         uasort($categories, function ($c1, $c2) {
             if ($c2->getName() == $c1->getName()) return 0;
