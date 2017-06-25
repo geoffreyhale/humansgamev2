@@ -4,24 +4,17 @@
     <div class="col-md-9">
         <h1><i class="fa fa-user" aria-hidden="true"></i> Hi, {{ user.username }}!</h1>
 
+        <h2>Today</h2>
+
         <p>You've written <strong><span class="{{ (wordcount >= 130) ? 'text-success' : 'text-danger' }}">{{ wordcount }} words</span></strong> today.</p>
 
         {% if posts is not empty %}
-            <hr>
-
-            <h2>Your Posts Today</h2>
             <table class="table table-borderless table-hover">
-                <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Words</th>
-                </tr>
-                </thead>
                 <tbody>
                 {% for post in posts %}
                     <tr>
                         <td style="white-space: nowrap;">
-                            <i class="fa fa-folder" aria-hidden="true"></i> {{ post.category.name }}
+                            <strong>{{ post.category.name }}</strong>
                         </td>
                         <td style="width: 100%;">
                             <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
@@ -34,15 +27,29 @@
 
         <hr>
 
-        <h2>Create New Post</h2>
-        <p>Select a Category</p>
-        <ul class="list-group" style="display: table;">
+        <h2><i class="fa fa-folder" aria-hidden="true"></i> Categories</h2>
+        <table class="table table-borderless table-hover">
+            <tbody>
             {% for category in categories %}
-                <li class="list-group-item">
-                    <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}">{{ category.name }}</a>
-                </li>
+                <tr>
+                    <td style="white-space: nowrap;">
+                        <strong>{{ category.name }}</strong>
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ path('category', {'id' : category.id}) }}">view</a>
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit</a>
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}" class="btn-sm btn-primary">write</a>
+                    </td>
+                    <td style="width: 100%;">
+                    </td>
+                </tr>
             {%  endfor %}
-        </ul>
+            </tbody>
+        </table>
     </div>
 
 
