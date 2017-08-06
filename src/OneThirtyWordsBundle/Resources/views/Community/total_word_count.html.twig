@@ -1,21 +1,23 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <h1><i class="fa fa-users" aria-hidden="true"></i> Total Word Counts</h1>
-    <table class="table table-borderless table-hover">
-        <thead>
-        <tr>
-            <th>User ID</th>
-            <th>Word Count</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
+    <div class="container-fluid">
+        <h1><i class="fa fa-users" aria-hidden="true"></i> Total Word Counts</h1>
+        <table class="table table-borderless table-hover">
+            <thead>
             <tr>
-                <td style="white-space: nowrap;">{{ user.username }}</td>
-                <td style="width: 100%;">{{ user.wordcount|number_format }}</td>
+                <th>User ID</th>
+                <th>Word Count</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td style="white-space: nowrap;">{{ user.username }}</td>
+                    <td style="width: 100%;">{{ user.wordcount|number_format }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

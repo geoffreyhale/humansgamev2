@@ -1,95 +1,97 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <div class="col-md-9">
-        <h1><i class="fa fa-user" aria-hidden="true"></i> Hi, {{ user.username }}!</h1>
+    <div class="container-fluid">
+        <div class="col-md-9">
+            <h1><i class="fa fa-user" aria-hidden="true"></i> Hi, {{ user.username }}!</h1>
 
-        <h2>Today</h2>
+            <h2>Today</h2>
 
-        <p>You've written <strong><span class="{{ (wordcount >= 130) ? 'text-success' : 'text-danger' }}">{{ wordcount }} words</span></strong> today.</p>
+            <p>You've written <strong><span class="{{ (wordcount >= 130) ? 'text-success' : 'text-danger' }}">{{ wordcount }} words</span></strong> today.</p>
 
-        {% if posts is not empty %}
+            {% if posts is not empty %}
+                <table class="table table-borderless table-hover">
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td style="white-space: nowrap;">
+                                <strong>{{ post.category.name }}</strong>
+                            </td>
+                            <td style="width: 100%;">
+                                <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
+                            </td>
+                        </tr>
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            <hr>
+
+            <h2><i class="fa fa-folder" aria-hidden="true"></i> Categories</h2>
             <table class="table table-borderless table-hover">
                 <tbody>
-                {% for post in posts %}
+                {% for category in categories %}
                     <tr>
                         <td style="white-space: nowrap;">
-                            <strong>{{ post.category.name }}</strong>
+                            <strong>{{ category.name }}</strong>
+                        </td>
+                        <td style="white-space: nowrap;">
+                            <a href="{{ path('category', {'id' : category.id}) }}">view</a>
+                        </td>
+                        <td style="white-space: nowrap;">
+                            <a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit</a>
+                        </td>
+                        <td style="white-space: nowrap;">
+                            <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}" class="btn-sm btn-primary">write</a>
                         </td>
                         <td style="width: 100%;">
-                            <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
                         </td>
                     </tr>
                 {%  endfor %}
                 </tbody>
             </table>
-        {% endif %}
-
-        <hr>
-
-        <h2><i class="fa fa-folder" aria-hidden="true"></i> Categories</h2>
-        <table class="table table-borderless table-hover">
-            <tbody>
-            {% for category in categories %}
-                <tr>
-                    <td style="white-space: nowrap;">
-                        <strong>{{ category.name }}</strong>
-                    </td>
-                    <td style="white-space: nowrap;">
-                        <a href="{{ path('category', {'id' : category.id}) }}">view</a>
-                    </td>
-                    <td style="white-space: nowrap;">
-                        <a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit</a>
-                    </td>
-                    <td style="white-space: nowrap;">
-                        <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}" class="btn-sm btn-primary">write</a>
-                    </td>
-                    <td style="width: 100%;">
-                    </td>
-                </tr>
-            {%  endfor %}
-            </tbody>
-        </table>
-    </div>
+        </div>
 
 
 
-    <div class="col-md-3">
-        <h1><i class="fa fa-users" aria-hidden="true"></i> Community</h1>
+        <div class="col-md-3">
+            <h1><i class="fa fa-users" aria-hidden="true"></i> Community</h1>
 
-        <h2>Today</h2>
-        {% if todayUsers is empty %}
-            <p>No posts yet today.  Be the first!</p>
-        {% else %}
-            <table class="table table-borderless table-hover">
-                <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Words</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for username, user in todayUsers %}
+            <h2>Today</h2>
+            {% if todayUsers is empty %}
+                <p>No posts yet today.  Be the first!</p>
+            {% else %}
+                <table class="table table-borderless table-hover">
+                    <thead>
                     <tr>
-                        <td style="white-space: nowrap;">
-                            {{ username }}
-                        </td>
-                        <td style="width: 100%;">
-                            {{ user.wordcount }}
-                        </td>
+                        <th>User</th>
+                        <th>Words</th>
                     </tr>
-                {%  endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+                    </thead>
+                    <tbody>
+                    {% for username, user in todayUsers %}
+                        <tr>
+                            <td style="white-space: nowrap;">
+                                {{ username }}
+                            </td>
+                            <td style="width: 100%;">
+                                {{ user.wordcount }}
+                            </td>
+                        </tr>
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
 
-        <h2>Yesterday</h2>
-        {% if yesterdayUsers is empty %}
-            <p>No posts yesterday.</p>
-        {% else %}
-            {% for username, user in yesterdayUsers %}
-                {{ username }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        {% endif %}
+            <h2>Yesterday</h2>
+            {% if yesterdayUsers is empty %}
+                <p>No posts yesterday.</p>
+            {% else %}
+                {% for username, user in yesterdayUsers %}
+                    {{ username }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

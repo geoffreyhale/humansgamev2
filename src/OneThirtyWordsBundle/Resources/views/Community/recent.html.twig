@@ -1,28 +1,30 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <h1><i class="fa fa-users" aria-hidden="true"></i> Recent Posters</h1>
-    <table class="table table-borderless table-hover">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Users</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for dateString, posts in postsBatchedByDate %}
+    <div class="container-fluid">
+        <h1><i class="fa fa-users" aria-hidden="true"></i> Recent Posters</h1>
+        <table class="table table-borderless table-hover">
+            <thead>
             <tr>
-                <td style="white-space: nowrap;">
-                    {{ posts[0].date|date('l, F jS, Y') }}
-                </td>
-                <td style="width: 100%;">
-                    {% for post in posts %}
-                        {{ post.user }}
-                        {% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
+                <th>Date</th>
+                <th>Users</th>
             </tr>
-        {%  endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for dateString, posts in postsBatchedByDate %}
+                <tr>
+                    <td style="white-space: nowrap;">
+                        {{ posts[0].date|date('l, F jS, Y') }}
+                    </td>
+                    <td style="width: 100%;">
+                        {% for post in posts %}
+                            {{ post.user }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

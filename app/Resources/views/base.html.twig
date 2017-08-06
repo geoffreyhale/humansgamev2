@@ -13,7 +13,7 @@
 </head>
 <body>
 {% block nav %}
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="margin-bottom: 0;">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -54,9 +54,9 @@
     </nav>
 {% endblock %}
 
-<div class="container-fluid">
-    {% block content %}{% endblock %}
-</div>
+{% block content %}
+{% endblock %}
+
 {% block js %}
     <script src="{{ asset('bundles/onethirtywords/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/onethirtywords/js/bootstrap.js') }}"></script>
