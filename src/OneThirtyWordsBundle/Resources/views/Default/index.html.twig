@@ -2,6 +2,18 @@
 
 {% block content %}
     <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand">{{ "now"|date('l, F jS') }}</span>
+            <span class="navbar-brand {{ (wordcount >= 130) ? 'text-success' }}">{{ wordcount }} Words Today</span>
+            {% if wordcount >= 130 %}
+                <span class="navbar-brand text-success"><i class="fa fa-check"></i></span>
+            {% else %}
+                <span class="navbar-brand text-danger">Need {{ 130 - wordcount }} more for 130 words!</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="col-md-9">
             <h1><i class="fa fa-user" aria-hidden="true"></i> Hi, {{ user.username }}!</h1>
 
