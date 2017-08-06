@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <h1><i class="fa fa-folder" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
+        <h1><i class="fa fa-folder-open" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
         <p><a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit category</a></p>
         {% if posts is empty %}
             <p>No posts yet.  Write one now!</p>
