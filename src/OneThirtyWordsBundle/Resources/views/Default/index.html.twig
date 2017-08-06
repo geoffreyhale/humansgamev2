@@ -37,29 +37,16 @@
 
             <hr>
 
-            <h2><i class="fa fa-folder-open" aria-hidden="true"></i> Categories</h2>
-            <table class="table table-borderless table-hover">
-                <tbody>
-                {% for category in categories %}
-                    <tr>
-                        <td style="white-space: nowrap;">
-                            <strong>{{ category.name }}</strong>
-                        </td>
-                        <td style="white-space: nowrap;">
-                            <a href="{{ path('category', {'id' : category.id}) }}">view</a>
-                        </td>
-                        <td style="white-space: nowrap;">
-                            <a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit</a>
-                        </td>
-                        <td style="white-space: nowrap;">
-                            <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}" class="btn-sm btn-primary">write</a>
-                        </td>
-                        <td style="width: 100%;">
-                        </td>
-                    </tr>
-                {%  endfor %}
-                </tbody>
-            </table>
+            <h2><i class="fa fa-folder-open" aria-hidden="true"></i> New Post By Category</h2>
+            {% for category in categories %}
+                <a
+                        href="{{ path('newPostByCategory', {'category_id' : category.id}) }}"
+                        class="btn btn-default"
+                        style="margin: 4px 2px;"
+                >
+                    {{ category.name }}
+                </a>
+            {%  endfor %}
         </div>
 
 
