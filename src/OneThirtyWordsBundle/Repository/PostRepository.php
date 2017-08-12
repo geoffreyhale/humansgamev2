@@ -2,6 +2,8 @@
 
 namespace OneThirtyWordsBundle\Repository;
 
+use OneThirtyWordsBundle\Entity\User;
+
 /**
  * PostRepository
  *
@@ -16,6 +18,18 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->join('p.user', 'u')
             ->groupBy('p.date', 'u')
             ->orderBy('p.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getPostsByUser(User $user)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.user', 'u')
+            ->where('u.id = :user_id')
+            ->groupBy('p.date', 'u')
+            ->orderBy('p.date', 'DESC')
+            ->setParameter('user_id', $user->getId())
             ->getQuery()
             ->getResult();
     }

@@ -42,7 +42,12 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <li class="navbar-text hidden-sm hidden-xs">{{ app.user.username }}</li>
+                        <li class="navbar-text hidden-sm hidden-xs">
+                            {{ app.user.username }}
+                            {% if user130WordsCount is defined %}
+                                <span class="badge" title="days you've written 130 words :)">{{ user130WordsCount }}</span>
+                            {% endif %}
+                        </li>
                         <li><a href="{{ path('fos_user_security_logout') }}" class="navbar-link">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                     {% else %}
                         <li><a href="{{ path('fos_user_security_login') }}" class="navbar-link">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
