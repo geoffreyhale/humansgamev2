@@ -10,18 +10,34 @@ Bootstrap
     border: none;
 }
 
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding-top: 25px;
+        padding-bottom: 5px;
+    }
+}
+
 /**
 130 Words
  */
+@media (min-width: 768px) {
+    .navbar-nav.nav-user-container > li > a {
+        padding: 5px;
+    }
+}
+
 .post {
     justify-content: center;
 }
+
 .post-header {
     margin-bottom: 20px;
 }
+
 .post-body {
     font-size: 20px;
 }
+
 .post-body textarea {
     height: 400px;
     font-size: 20px;
