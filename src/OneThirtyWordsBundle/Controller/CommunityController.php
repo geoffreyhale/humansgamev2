@@ -17,7 +17,6 @@ class CommunityController extends Controller
 {
     /**
      * @Route("/recent", name="communityRecent")
-     * @Template("OneThirtyWordsBundle:Community:recent.html.twig")
      */
     public function communityRecentAction(Request $request)
     {
@@ -32,14 +31,13 @@ class CommunityController extends Controller
             $postsBatchedByDate[$post->getDate()->format('Y-m-d')][] = $post;
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Community:recent.html.twig', array(
             'postsBatchedByDate' => $postsBatchedByDate
-        ];
+        ));
     }
 
     /**
      * @Route("/total-word-count", name="communityTotalWordCount")
-     * @Template("OneThirtyWordsBundle:Community:total_word_count.html.twig")
      */
     public function communityTotalWordCountAction(Request $request)
     {
@@ -70,8 +68,8 @@ class CommunityController extends Controller
             return $u2['wordcount'] < $u1['wordcount'] ? -1 : 1;
         });
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Community:total_word_count.html.twig', array(
             'users' => $usersData
-        ];
+        ));
     }
 }

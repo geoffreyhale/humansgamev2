@@ -16,7 +16,6 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
-     * @Template("OneThirtyWordsBundle:Default:index.html.twig")
      */
     public function indexAction()
     {
@@ -65,14 +64,14 @@ class DefaultController extends Controller
             return $u2['wordcount'] > $u1['wordcount'] ? 1 : -1;
         });
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Home:index.html.twig', array(
             'categories' => $categories,
             'posts' => $posts,
             'todayUsers' => $todayUsers,
             'user' => $this->getUser(),
             'user130WordsCount' => $this->get('one_thirty_service')->getUser130WordsCount($this->getUser()),
             'wordcount' => $wordcount,
-        ];
+        ));
     }
 
     /**

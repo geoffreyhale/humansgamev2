@@ -16,7 +16,6 @@ class CategoryController extends Controller
 {
     /**
      * @Route("/category/{id}", requirements={"id" = "\d+"}, name="category")
-     * @Template("OneThirtyWordsBundle:Category:category.html.twig")
      */
     public function indexAction(Category $category)
     {
@@ -34,15 +33,14 @@ class CategoryController extends Controller
                 )
             );
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Category:category.html.twig', array(
             'category' => $category,
             'posts' => $posts,
-        ];
+        ));
     }
 
     /**
      * @Route("/category/new", name="newCategory")
-     * @Template("OneThirtyWordsBundle:Category:new.html.twig")
      */
     public function newCategoryAction(Request $request)
     {
@@ -66,15 +64,14 @@ class CategoryController extends Controller
             return $this->forward('OneThirtyWordsBundle:Category:categories');
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Category:new.html.twig', array(
             'form' => $form->createView(),
             'category' => $category,
-        ];
+        ));
     }
 
     /**
      * @Route("/category/{id}/edit", name="categoryEdit")
-     * @Template("OneThirtyWordsBundle:Category:edit.html.twig")
      */
     public function categoryEditAction(Request $request, Category $category)
     {
@@ -102,15 +99,14 @@ class CategoryController extends Controller
             ));
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Category:edit.html.twig', array(
             'form' => $form->createView(),
             'category' => $category,
-        ];
+        ));
     }
 
     /**
      * @Route("/categories", name="categories")
-     * @Template("OneThirtyWordsBundle:Category:categories.html.twig")
      */
     public function categoriesAction()
     {
@@ -132,8 +128,8 @@ class CategoryController extends Controller
             );
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Category:categories.html.twig', array(
             'categories' => $categoriesViewArray,
-        ];
+        ));
     }
 }

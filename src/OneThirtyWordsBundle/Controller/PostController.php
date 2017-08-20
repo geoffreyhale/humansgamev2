@@ -15,7 +15,6 @@ class PostController extends Controller
 {
     /**
      * @Route("/post/{post}", name="post")
-     * @Template("OneThirtyWordsBundle:Post:index.html.twig")
      */
     public function indexAction(Post $post)
     {
@@ -23,14 +22,13 @@ class PostController extends Controller
             throw new \Exception("ACCESS DENIED: This is not your post.");
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Post:index.html.twig', array(
             'post' => $post,
-        ];
+        ));
     }
 
     /**
      * @Route("/posts", name="posts")
-     * @Template("OneThirtyWordsBundle:Post:posts.html.twig")
      */
     public function postsAction()
     {
@@ -44,14 +42,13 @@ class PostController extends Controller
                 )
             );
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Post:posts.html.twig', array(
             'posts' => array_reverse($posts),
-        ];
+        ));
     }
 
     /**
      * @Route("/post/{id}/edit", name="postEdit")
-     * @Template("OneThirtyWordsBundle:Post:edit.html.twig")
      */
     public function postEditAction(Request $request, Post $post)
     {
@@ -78,15 +75,14 @@ class PostController extends Controller
             $em->flush();
         }
 
-        return [
+        return $this->render('OneThirtyWordsBundle:Post:edit.html.twig', array(
             'form' => $form->createView(),
             'post' => $post,
-        ];
+        ));
     }
 
     /**
      * @Route("/new-post-by-category/{category_id}", name="newPostByCategory")
-     * @Template("OneThirtyWordsBundle:Post:edit.html.twig")
      */
     public function newPostByCategoryAction($category_id)
     {
