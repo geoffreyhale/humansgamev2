@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="col-md-9">
+            {% include 'OneThirtyWordsBundle:Home:partials/today.html.twig' %}
+            {% include 'OneThirtyWordsBundle:Home:partials/posts.html.twig' %}
+            <hr>
+            {% include 'OneThirtyWordsBundle:Home:partials/new_post_by_category.html.twig' %}
+        </div>
+        <div class="col-md-3">
+            {% include 'OneThirtyWordsBundle:Home:partials/community_today.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

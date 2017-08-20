@@ -1,0 +1,26 @@
+<h3><i class="fa fa-users" aria-hidden="true"></i> Community Today</h3>
+
+{% if todayUsers is empty %}
+    <p>No posts yet today.  Be the first!</p>
+{% else %}
+    <table class="table table-borderless table-hover">
+        <thead>
+        <tr>
+            <th>Words</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for username, user in todayUsers %}
+            <tr>
+                <td>
+                    {{ user.wordcount }}
+                </td>
+                <td style="white-space: nowrap; width: 100%;">
+                    {{ username }}
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+{% endif %}

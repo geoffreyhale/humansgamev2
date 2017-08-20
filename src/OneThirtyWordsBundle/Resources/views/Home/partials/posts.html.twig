@@ -1,0 +1,19 @@
+<h3><i class="fa fa-pencil" aria-hidden="true"></i> Posts</h3>
+{% if posts is empty %}
+    <span>You haven't written yet today!</span>
+{% else %}
+    <table class="table table-borderless table-hover">
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td style="white-space: nowrap;">
+                    <strong>{{ post.category.name }}</strong>
+                </td>
+                <td style="width: 100%;">
+                    <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:400] ~ '...' }}</a>
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+{% endif %}

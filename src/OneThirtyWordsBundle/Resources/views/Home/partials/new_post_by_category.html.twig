@@ -1,0 +1,10 @@
+<h3><i class="fa fa-folder-open" aria-hidden="true"></i> New Post By Category</h3>
+{% for category in categories %}
+    <a
+            href="{{ path('newPostByCategory', {'category_id' : category.id}) }}"
+            class="btn btn-default"
+            style="margin: 4px 2px;"
+    >
+        {{ category.name }}
+    </a>
+{%  endfor %}
