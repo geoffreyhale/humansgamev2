@@ -108,7 +108,7 @@ class PostController extends Controller
             $em->flush();
         }
 
-        return $this->forward('OneThirtyWordsBundle:Post:postEdit', array(
+        return $this->forward('OneThirtyWordsBundle:Post:editPost', array(
             'id'  => $post->getId(),
         ));
     }
