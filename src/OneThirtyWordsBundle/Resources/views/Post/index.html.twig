@@ -2,6 +2,20 @@
 
 {% block content %}
     <div class="container-fluid">
-        {% include 'OneThirtyWordsBundle:Post:partial/post.html.twig' %}
+        <div class="row post">
+            <div class="col-md-2 post-header">
+                <h1>{{ post.date|date('l, F jS') }}</h1>
+                <div>
+                    <i class="fa fa-folder-open" aria-hidden="true"></i>
+                    {{ post.category ? post.category.name : "Unknown"}}
+                </div>
+            </div>
+            <div class="col-md-8 post-body count_this">
+                {{ post.body|nl2br }}
+            </div>
+            <div class="col-md-2">
+                {% include 'OneThirtyWordsBundle:Widgets:wordcount.html.twig' %}
+            </div>
+        </div>
     </div>
 {% endblock %}
