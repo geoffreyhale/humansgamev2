@@ -10,7 +10,7 @@
             {% for category in categories %}
                 {% if category.hide != true %}
                     <li class="list-group-item">
-                        <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
+                        <a href="{{ path('getCategory', {'id' : category.id}) }}">{{ category.name }}</a>
                         <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
                     </li>
                 {% endif %}
@@ -22,7 +22,7 @@
             {% for category in categories %}
                 {% if category.hide == true %}
                     <li class="list-group-item">
-                        <a href="{{ path('category', {'id' : category.id}) }}">{{ category.name }}</a>
+                        <a href="{{ path('getCategory', {'id' : category.id}) }}">{{ category.name }}</a>
                         <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
                     </li>
                 {% endif %}

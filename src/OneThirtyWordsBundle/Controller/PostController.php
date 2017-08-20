@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 class PostController extends Controller
 {
     /**
-     * @Route("/post/{post}", name="post")
+     * @Route("/post/{post}", name="getPost")
      */
-    public function indexAction(Post $post)
+    public function getPostAction(Post $post)
     {
         if ($this->getUser() !== $post->getUser()) {
             throw new \Exception("ACCESS DENIED: This is not your post.");
@@ -28,9 +28,9 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/posts", name="posts")
+     * @Route("/posts", name="getPosts")
      */
-    public function postsAction()
+    public function getPostsAction()
     {
         $posts = $this->getDoctrine()->getManager()->getRepository(Post::class)
             ->findBy(
@@ -48,9 +48,9 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/{id}/edit", name="postEdit")
+     * @Route("/post/{id}/edit", name="editPost")
      */
-    public function postEditAction(Request $request, Post $post)
+    public function editPostAction(Request $request, Post $post)
     {
         if ($post->getUser() !== $this->getUser()) {
             throw new \Exception("ACCESS DENIED: This is not your post.");

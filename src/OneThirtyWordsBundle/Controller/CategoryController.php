@@ -15,9 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}", requirements={"id" = "\d+"}, name="category")
+     * @Route("/category/{id}", requirements={"id" = "\d+"}, name="getCategory")
      */
-    public function indexAction(Category $category)
+    public function getCategoryAction(Category $category)
     {
         if ($this->getUser() !== $category->getUser()) {
             throw new \Exception("ACCESS DENIED: This is not your category.");
@@ -71,9 +71,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/category/{id}/edit", name="categoryEdit")
+     * @Route("/category/{id}/edit", name="editCategory")
      */
-    public function categoryEditAction(Request $request, Category $category)
+    public function editCategoryAction(Request $request, Category $category)
     {
         if ($this->getUser() !== $category->getUser()) {
             throw new \Exception("ACCESS DENIED: This is not your category.");
@@ -106,9 +106,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/categories", name="categories")
+     * @Route("/categories", name="getCategories")
      */
-    public function categoriesAction()
+    public function getCategoriesAction()
     {
         $categories = $this->getUser()->getCategories()->getValues();
 

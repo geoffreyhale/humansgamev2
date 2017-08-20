@@ -10,7 +10,7 @@
                     <strong>{{ post.category.name }}</strong>
                 </td>
                 <td style="width: 100%;">
-                    <a href="{{ path('postEdit', {'id' : post.id}) }}">{{ post.body[:400] ~ '...' }}</a>
+                    <a href="{{ path('editPost', {'id' : post.id}) }}">{{ post.body[:400] ~ '...' }}</a>
                 </td>
             </tr>
         {%  endfor %}

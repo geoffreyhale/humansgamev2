@@ -21,7 +21,7 @@
                         {{ post.date|date('l, F jS, Y') }}
                     </td>
                     <td style="width: 100%;">
-                        <a href="{{ path('post', {'post' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
+                        <a href="{{ path('getPost', {'post' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
                     </td>
                 </tr>
             {%  endfor %}

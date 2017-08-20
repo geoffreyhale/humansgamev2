@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container-fluid">
         <h1><i class="fa fa-folder-open" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
-        <p><a href="{{ path('categoryEdit', {'id' : category.id}) }}">edit category</a></p>
+        <p><a href="{{ path('editCategory', {'id' : category.id}) }}">edit category</a></p>
         {% if posts is empty %}
             <p>No posts yet.  Write one now!</p>
             <p><a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}">write</a></p>
@@ -22,7 +22,7 @@
                             {{ post.date|date('l, F jS, Y') }}
                         </td>
                         <td style="width: 100%;">
-                            <a href="{{ path('post', {'post' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
+                            <a href="{{ path('getPost', {'post' : post.id}) }}">{{ post.body[:40] ~ '...' }}</a>
                         </td>
                     </tr>
                 {%  endfor %}
