@@ -79,8 +79,7 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        $oneThirtyService = $this->get('one_thirty_service');
-        $oneThirtyService->getUser130WordsCount($this->getUser());
+        $this->get('one_thirty_service')->getUsersWith130WordsCounts($this->getUser());
         die;
     }
 }

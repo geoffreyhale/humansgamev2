@@ -6,15 +6,18 @@
         <table class="table table-borderless table-hover">
             <thead>
             <tr>
+                <th style="white-space: nowrap;">130 Word Days</th>
                 <th>Username</th>
-                <th>Word Count</th>
             </tr>
             </thead>
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td style="white-space: nowrap;">{{ user.username }}</td>
-                    <td style="width: 100%;">{{ user.wordcount|number_format }}</td>
+                    <td>{{ user.130|number_format }}</td>
+                    <td style="white-space: nowrap; width: 100%;">
+                        {{ user.username }}
+                        <span class="badge" title="days written 130 words or more">{{ user.130|number_format }}</span>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

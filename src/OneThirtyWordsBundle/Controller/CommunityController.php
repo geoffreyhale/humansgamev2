@@ -16,6 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 class CommunityController extends Controller
 {
     /**
+     * @Route("/", name="community")
+     */
+    public function communityAction()
+    {
+        return $this->render('OneThirtyWordsBundle:Community:index.html.twig', array(
+            'users' => $this->get('one_thirty_service')->getUsersWith130WordsCounts(),
+        ));
+    }
+
+    /**
      * @Route("/recent", name="communityRecent")
      */
     public function communityRecentAction(Request $request)
