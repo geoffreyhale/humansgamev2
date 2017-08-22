@@ -59,23 +59,31 @@ class OneThirtyService
         return $user130WordsCount;
     }
     
-    public function getUsersWith130WordsCounts()
+    public function getUsersWith130WordsCounts($min130s = 0, $limit = 0)
     {
         $users = $this->em->getRepository(User::class)->findAll();
 
         $usersData = array();
 
         foreach ($users as $user) {
-            $usersData[$user->getId()] = array(
-                'username' => $user->getUsername(),
-                '130' => $this->getUser130WordsCount($user),
-            );
+            $user130WordsCount = $this->getUser130WordsCount($user);
+
+            if ($user130WordsCount >= $min130s) {
+                $usersData[$user->getId()] = array(
+                    'username' => $user->getUsername(),
+                    '130' => $user130WordsCount,
+                );
+            }
         }
 
         uasort($usersData, function ($u1, $u2) {
             if ($u2['130'] == $u1['130']) return 0;
             return $u2['130'] < $u1['130'] ? -1 : 1;
         });
+
+        if ($limit > 0) {
+            return array_slice($usersData, 0, $limit);
+        }
 
         return $usersData;
     }

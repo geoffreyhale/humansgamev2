@@ -10,6 +10,14 @@
         </div>
         <div class="col-md-3">
             {% include 'OneThirtyWordsBundle:Home:partials/community_today.html.twig' %}
+
+            {{ render(controller(
+                'OneThirtyWordsBundle:Users:getUsersBy130s',
+                {
+                    'min130s': 2,
+                    'limit': 10
+                }
+            )) }}
         </div>
     </div>
 {% endblock %}
