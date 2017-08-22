@@ -1,16 +1,13 @@
-<div class="panel panel-body panel-default">
-    <h3 style="margin-top: 0;"><i class="fa fa-trophy" aria-hidden="true"></i> Top 10 All-Time</h3>
-    <table class="table table-borderless table-hover">
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td style="white-space: nowrap; width: 100%;">
-                    {{ user.username }}
-                    <span class="badge" style="margin-left: 3px;" title="days written 130 words or more">{{ user.130|number_format }}</span>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<table class="table table-borderless table-hover">
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td style="white-space: nowrap; width: 100%;">
+                {{ user.username }}
+                <span class="badge" style="margin-left: 3px;" title="days written 130 words or more">{{ user.130|number_format }}</span>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

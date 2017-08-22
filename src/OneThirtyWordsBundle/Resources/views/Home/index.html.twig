@@ -11,13 +11,16 @@
         <div class="col-md-3">
             {% include 'OneThirtyWordsBundle:Home:partials/community_today.html.twig' %}
 
-            {{ render(controller(
-                'OneThirtyWordsBundle:Users:getUsersBy130s',
-                {
-                    'min130s': 2,
-                    'limit': 10
-                }
-            )) }}
+            <div class="panel panel-body panel-default">
+                <h3 style="margin-top: 0;"><i class="fa fa-trophy" aria-hidden="true"></i> Top 10 All-Time</h3>
+                {{ render(controller(
+                    'OneThirtyWordsBundle:Users:getUsersBy130s',
+                    {
+                        'min130s': 2,
+                        'limit': 10
+                    }
+                )) }}
+            </div>
         </div>
     </div>
 {% endblock %}

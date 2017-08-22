@@ -26,9 +26,9 @@ class CommunityController extends Controller
     }
 
     /**
-     * @Route("/recent", name="communityRecent")
+     * @Route("/recent-users-by-post-date", name="getRecentUsersByPostDate")
      */
-    public function communityRecentAction(Request $request)
+    public function getRecentUsersByPostDateAction($limit = 0)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -41,45 +41,12 @@ class CommunityController extends Controller
             $postsBatchedByDate[$post->getDate()->format('Y-m-d')][] = $post;
         }
 
-        return $this->render('OneThirtyWordsBundle:Community:recent.html.twig', array(
-            'postsBatchedByDate' => $postsBatchedByDate
-        ));
-    }
-
-    /**
-     * @Route("/total-word-count", name="communityTotalWordCount")
-     */
-    public function communityTotalWordCountAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository(User::class)->findAll();
-
-        $usersData = [];
-
-        /** @var User $user */
-        foreach ($users as $user) {
-            $usersData[$user->getId()] = ['wordcount' => 0, 'username' => $user->getUsername()];
-            $categories = $user->getCategories();
-
-            /** @var Category $category */
-            foreach ($categories as $category) {
-                $posts = $category->getPosts();
-
-                /** @var Post $post */
-                foreach ($posts as $post) {
-                    $usersData[$user->getId()]['wordcount'] += str_word_count($post->getBody());
-                }
-            }
+        if ($limit > 0) {
+            $postsBatchedByDate = array_slice($postsBatchedByDate, 0, $limit);
         }
 
-        uasort($usersData, function ($u1, $u2) {
-            if ($u2['wordcount'] == $u1['wordcount']) return 0;
-            return $u2['wordcount'] < $u1['wordcount'] ? -1 : 1;
-        });
-
-        return $this->render('OneThirtyWordsBundle:Community:total_word_count.html.twig', array(
-            'users' => $usersData
+        return $this->render('OneThirtyWordsBundle:Community:partials/recent_users_by_post_date.html.twig', array(
+            'postsBatchedByDate' => $postsBatchedByDate
         ));
     }
 }
