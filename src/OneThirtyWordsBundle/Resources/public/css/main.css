@@ -1,6 +1,18 @@
 /**
 Bootstrap
  */
+.navbar {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    background: #2c3e50;
+    color: #fff;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
 .table-borderless > tbody > tr > td,
 .table-borderless > tbody > tr > th,
 .table-borderless > tfoot > tr > td,
@@ -10,24 +22,17 @@ Bootstrap
     border: none;
 }
 
-@media (min-width: 768px) {
-    .navbar-nav > li > a {
-        padding-top: 25px;
-        padding-bottom: 5px;
-    }
-}
-
 /**
 130 Words
  */
-@media (min-width: 768px) {
-    .navbar-nav.nav-user-container > li > a {
-        padding: 5px;
-    }
-}
-
 .alert {
     padding: 5px 10px;
+}
+
+.login,
+.register {
+    margin: 50px auto;
+    max-width: 200px;
 }
 
 .post {
@@ -46,6 +51,11 @@ Bootstrap
     height: 400px;
     font-size: 20px;
     resize: none;
+}
+
+.splash.jumbotron {
+    color: #fff;
+    background: #18bc9c;
 }
 
 .wordcount {

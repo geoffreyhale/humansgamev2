@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default text-uppercase">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,13 +8,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">130Words</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}">130 Words</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="onethirtywords-navbar-collapse-1">
             {% if app.user is not null %}
                 <ul class="nav navbar-nav">
+                    <li><a href="{{ path('homepage') }}" class="navbar-link">Home</a></li>
                     <li><a href="{{ path('getPosts') }}" class="navbar-link">Posts</a></li>
                     <li><a href="{{ path('getCategories') }}" class="navbar-link">Categories</a></li>
                     <li><a href="{{ path('community') }}" class="navbar-link">Community</a></li>
@@ -23,7 +24,7 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <ul class="nav navbar-nav navbar-right nav-user-container">
                     <li class="hidden-xs hidden-xs">
-                        <a href="{{ path('homepage') }}">
+                        <a>
                             {{ app.user.username }}
                             {% if user130WordsCount is defined %}
                                 <span class="badge" title="days you've written 130 words :)">{{ user130WordsCount }}</span>
