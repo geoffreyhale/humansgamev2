@@ -19,6 +19,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        if (null == $this->getUser()) {
+            return $this->render('OneThirtyWordsBundle:Home:splash.html.twig');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $posts = $em->getRepository(Post::class)->findBy([

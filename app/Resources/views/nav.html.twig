@@ -13,11 +13,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="onethirtywords-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('getPosts') }}" class="navbar-link">Posts</a></li>
-                <li><a href="{{ path('getCategories') }}" class="navbar-link">Categories</a></li>
-                <li><a href="{{ path('community') }}" class="navbar-link">Community</a></li>
-            </ul>
+            {% if app.user is not null %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('getPosts') }}" class="navbar-link">Posts</a></li>
+                    <li><a href="{{ path('getCategories') }}" class="navbar-link">Categories</a></li>
+                    <li><a href="{{ path('community') }}" class="navbar-link">Community</a></li>
+                </ul>
+            {% endif %}
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <ul class="nav navbar-nav navbar-right nav-user-container">
                     <li class="hidden-xs hidden-xs">

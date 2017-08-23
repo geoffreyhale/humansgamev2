@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="col-md-9">
+            <h1>Welcome to 130 Words!</h1>
+            <p>130 Words is a free web app for daily journaling.  We like to share statistics to support friendly competition but your words are always private.</p>
+            <p><a href="{{ path('fos_user_registration_register') }}" class="navbar-link">Register</a> to give it a try and let us know what you think.  We love to add new features and the app is always improving.</p>
+        </div>
+    </div>
+{% endblock %}
