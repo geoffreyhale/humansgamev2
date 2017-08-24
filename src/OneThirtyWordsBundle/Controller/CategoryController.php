@@ -94,7 +94,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category', array(
+            return $this->redirectToRoute('getCategory', array(
                 'id'  => $category->getId()
             ));
         }
