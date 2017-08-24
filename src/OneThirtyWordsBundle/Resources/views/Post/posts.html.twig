@@ -3,6 +3,7 @@
 {% block content %}
     <div class="container-fluid">
         <h1>Posts <span class="badge">{{ posts|length }}</span></h1>
+        <a href="{{ path('newPost') }}" class="btn btn-primary btn-lg">New Post</a>
         <table class="table table-borderless table-hover">
             <thead>
             <tr>
