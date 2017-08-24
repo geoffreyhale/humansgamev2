@@ -8,6 +8,11 @@
     <div class="alert alert-info" style="display:inline-block">
         {{ wordcount }} Words Today
     </div>
+{% endif %}
+<br>
+
+<a href="{{ path('newPost') }}" class="btn btn-primary btn-lg">New Post</a>
+{% if wordcount < 130 %}
     <div class="alert alert-danger" style="display:inline-block">
         Need to write {{ 130 - wordcount }} more words for 130 words today!
     </div>
