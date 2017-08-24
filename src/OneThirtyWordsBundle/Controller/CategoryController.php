@@ -61,7 +61,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->forward('OneThirtyWordsBundle:Category:categories');
+            return $this->forward('OneThirtyWordsBundle:Category:getCategories');
         }
 
         return $this->render('OneThirtyWordsBundle:Category:new.html.twig', array(
