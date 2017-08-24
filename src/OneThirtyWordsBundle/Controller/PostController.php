@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PostController extends Controller
 {
     /**
-     * @Route("/post/{post}", name="getPost")
+     * @Route("/post/{post}", name="getPost", requirements={"post": "\d+"})
      */
     public function getPostAction(Post $post)
     {
@@ -44,6 +44,42 @@ class PostController extends Controller
 
         return $this->render('OneThirtyWordsBundle:Post:posts.html.twig', array(
             'posts' => array_reverse($posts),
+        ));
+    }
+
+    /**
+     * @Route("/post/new", name="newPost")
+     */
+    public function newPostAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $post = (new Post())
+            ->setDate(new \DateTime)
+            ->setUser($this->getUser())
+        ;
+
+        $form = $this->createFormBuilder($post)
+            ->add('body', TextareaType::class)
+            ->add('submit', SubmitType::class, array('label' => 'Save'))
+            ->getForm()
+        ;
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirectToRoute('editPost', array(
+                'id'  => $post->getId(),
+            ));
+        }
+
+        return $this->render('OneThirtyWordsBundle:Post:edit.html.twig', array(
+            'form' => $form->createView(),
+            'post' => $post,
         ));
     }
 

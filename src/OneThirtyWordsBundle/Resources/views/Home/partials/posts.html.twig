@@ -7,7 +7,7 @@
         {% for post in posts %}
             <tr>
                 <td style="white-space: nowrap;">
-                    <strong>{{ post.category.name }}</strong>
+                    <strong>{{ (post.category is not null) ? post.category.name : "Uncategorized"}}</strong>
                 </td>
                 <td style="width: 100%;">
                     <a href="{{ path('editPost', {'id' : post.id}) }}">{{ post.body[:400] ~ '...' }}</a>
