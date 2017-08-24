@@ -2,13 +2,10 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row post">
+        <div class="row post" style="margin-top: 20px;">
             <div class="post-header col-xs-12 col-md-2">
-                <h1>{{ post.date|date('l, F jS') }}</h1>
-                <div>
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>
-                    {{ post.category ? post.category.name : "Uncategorized"}}
-                </div>
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                {{ post.category ? post.category.name : "Uncategorized"}}
             </div>
             <div class="post-body col-xs-12 col-md-8">
                 {% if form is defined %}
@@ -22,7 +19,7 @@
                     {{ form_end(form) }}
                 {% endif %}
             </div>
-            <div class="col-xs-12 col-md-2" style="margin-top: 20px;">
+            <div class="col-xs-12 col-md-2">
                 {% include 'OneThirtyWordsBundle:Widgets:wordcount.html.twig' %}
             </div>
         </div>

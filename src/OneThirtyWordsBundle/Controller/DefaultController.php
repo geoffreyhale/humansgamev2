@@ -30,11 +30,6 @@ class DefaultController extends Controller
             'user' => $this->getUser(),
         ]);
 
-        $wordcount = 0;
-        foreach ($posts as $post) {
-            $wordcount += str_word_count($post->getBody());
-        }
-
         $categories = $em->getRepository(Category::class)->findBy([
             'user' => $this->getUser(),
             'hide' => false,
@@ -50,7 +45,6 @@ class DefaultController extends Controller
             'posts' => $posts,
             'user' => $this->getUser(),
             'user130WordsCount' => $this->get('one_thirty_service')->getUser130WordsCount($this->getUser()),
-            'wordcount' => $wordcount,
         ));
     }
 

@@ -40,6 +40,10 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
+    # https://symfony.com/doc/current/templating/global_variables.html
+    globals:
+      user_service: '@user_service'
+
 # Doctrine Configuration
 doctrine:
     dbal:
