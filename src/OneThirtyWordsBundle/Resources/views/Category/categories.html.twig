@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1><i class="fa fa-folder-open" aria-hidden="true"></i> Categories</h1>
 
-        <p><a href="{{ path('newCategory') }}">Create New Category</a></p>
+        <p><a href="{{ path('newCategory') }}" class="btn btn-primary btn-lg">New Category</a></p>
 
         <ul class="list-group" style="display: table;">
             {% for category in categories %}
