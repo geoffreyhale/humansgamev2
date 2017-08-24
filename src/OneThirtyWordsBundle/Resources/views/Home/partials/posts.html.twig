@@ -1,7 +1,9 @@
-<h3><i class="fa fa-pencil" aria-hidden="true"></i> Posts</h3>
-{% if posts is empty %}
-    <span>You haven't written yet today!</span>
-{% else %}
+<div style="margin-top: 15px;">
+    <a href="{{ path('newPost') }}" class="btn btn-primary btn-lg">New Post</a>
+</div>
+
+{% if posts is not empty %}
+    <h3><i class="fa fa-pencil" aria-hidden="true"></i> Posts</h3>
     <table class="table table-borderless table-hover">
         <tbody>
         {% for post in posts %}

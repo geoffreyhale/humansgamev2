@@ -1,19 +1,13 @@
-<h2 style="display: inline-block; margin-right: 5px;">{{ "now"|date('l, F jS') }}</h2>
-{% if wordcount >= 130 %}
-    <div class="alert alert-success" style="display:inline-block">
-        <span>{{ wordcount }} Words Today</span>
-        <span><i class="fa fa-check"></i></span>
+<div class="row {{ (wordcount < 130) ? 'bg-danger' : 'bg-success'}}">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <h2 style="margin: 20px 15px;">{{ "now"|date('l, F jS') }}</h2>
+        </div>
+        <div class="pull-right">
+            {% if wordcount < 130 %}
+                <span class="text-danger" style="display: inline-block">-{{ 130 - wordcount }}</span>
+            {% endif %}
+            <h2 title="words today" style="display: inline-block; margin: 20px 15px;">{{ wordcount }}</h2>
+        </div>
     </div>
-{% else %}
-    <div class="alert alert-info" style="display:inline-block">
-        {{ wordcount }} Words Today
-    </div>
-{% endif %}
-<br>
-
-<a href="{{ path('newPost') }}" class="btn btn-primary btn-lg">New Post</a>
-{% if wordcount < 130 %}
-    <div class="alert alert-danger" style="display:inline-block">
-        Need to write {{ 130 - wordcount }} more words for 130 words today!
-    </div>
-{% endif %}
+</div>
