@@ -5,22 +5,9 @@
         <div class="col-md-9">
             {% include 'OneThirtyWordsBundle:Home:partials/today.html.twig' %}
             {% include 'OneThirtyWordsBundle:Home:partials/posts.html.twig' %}
-            <hr>
-            {% include 'OneThirtyWordsBundle:Home:partials/new_post_by_category.html.twig' %}
         </div>
         <div class="col-md-3">
-            {% include 'OneThirtyWordsBundle:Home:partials/community_today.html.twig' %}
-
-            <div class="panel panel-body panel-default">
-                <h3 style="margin-top: 0;"><i class="fa fa-trophy" aria-hidden="true"></i> Top 10 All-Time</h3>
-                {{ render(controller(
-                    'OneThirtyWordsBundle:Users:getUsersBy130s',
-                    {
-                        'min130s': 2,
-                        'limit': 10
-                    }
-                )) }}
-            </div>
+            {% include 'OneThirtyWordsBundle:Home:partials/new_post_by_category.html.twig' %}
         </div>
     </div>
 {% endblock %}
