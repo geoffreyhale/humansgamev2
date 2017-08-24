@@ -1,0 +1,19 @@
+{% if users is empty %}
+    <p>No posts yet today.  Be the first!</p>
+{% else %}
+    <table class="table table-borderless table-hover">
+        <tbody>
+        {% for username, user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td style="white-space: nowrap;">
+                    {{ username }}
+                </td>
+                <td style="width: 100%;">
+                    {{ user.wordcount }} words
+                </td>
+            </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+{% endif %}

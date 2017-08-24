@@ -45,33 +45,9 @@ class DefaultController extends Controller
             return $c2->getName() > $c1->getName() ? -1 : 1;
         });
 
-        /**
-         * Today Users
-         */
-        $todayUsers = [];
-
-        $postsToday = $em->getRepository(Post::class)->findBy([
-            'date' => new \DateTime('today'),
-        ]);
-
-        foreach ($postsToday as $post) {
-            if (!array_key_exists($post->getUser()->getUsername(), $todayUsers)) {
-                $todayUsers[$post->getUser()->getUsername()]['wordcount'] = 0;
-            }
-
-            $todayUsers[$post->getUser()->getUsername()]['wordcount'] += str_word_count($post->getBody());
-        }
-
-        // sort by wordcount
-        uasort($todayUsers, function ($u1, $u2) {
-            if ($u2['wordcount'] == $u1['wordcount']) return 0;
-            return $u2['wordcount'] > $u1['wordcount'] ? 1 : -1;
-        });
-
         return $this->render('OneThirtyWordsBundle:Home:index.html.twig', array(
             'categories' => $categories,
             'posts' => $posts,
-            'todayUsers' => $todayUsers,
             'user' => $this->getUser(),
             'user130WordsCount' => $this->get('one_thirty_service')->getUser130WordsCount($this->getUser()),
             'wordcount' => $wordcount,

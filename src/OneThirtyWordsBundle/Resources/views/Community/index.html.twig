@@ -2,6 +2,10 @@
 
 {% block content %}
     <div class="container-fluid">
+        <div class="col-md-12">
+            <h3><i class="fa fa-users" aria-hidden="true"></i> Today</h3>
+            {{ render(controller('OneThirtyWordsBundle:Users:getUsersToday')) }}
+        </div>
         <div class="col-md-3">
             <h3><i class="fa fa-trophy" aria-hidden="true"></i> 130 Word Days</h3>
             {{ render(controller('OneThirtyWordsBundle:Users:getUsersBy130s')) }}

@@ -61,4 +61,35 @@ class UsersController extends Controller
             'users' => $usersData
         ));
     }
+
+    /**
+     * @Route("/today", name="getUsersToday")
+     */
+    public function getUsersTodayAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em->getRepository(Post::class)->findBy([
+            'date' => new \DateTime('today'),
+        ]);
+
+        $usersData = [];
+        foreach ($posts as $post) {
+            if (!array_key_exists($post->getUser()->getUsername(), $usersData)) {
+                $usersData[$post->getUser()->getUsername()]['wordcount'] = 0;
+            }
+
+            $usersData[$post->getUser()->getUsername()]['wordcount'] += str_word_count($post->getBody());
+        }
+
+        // sort by word count
+        uasort($usersData, function ($u1, $u2) {
+            if ($u2['wordcount'] == $u1['wordcount']) return 0;
+            return $u2['wordcount'] > $u1['wordcount'] ? 1 : -1;
+        });
+
+        return $this->render('OneThirtyWordsBundle:Users:partials/community_today.html.twig', array(
+            'users' => $usersData
+        ));
+    }
 }
