@@ -43,6 +43,7 @@ twig:
     # https://symfony.com/doc/current/templating/global_variables.html
     globals:
       user_service: '@user_service'
+      one_thirty_service: '@one_thirty_service'
 
 # Doctrine Configuration
 doctrine:

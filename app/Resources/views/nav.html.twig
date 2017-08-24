@@ -27,9 +27,7 @@
                     <li class="hidden-xs hidden-xs">
                         <a>
                             {{ app.user.username }}
-                            {% if user130WordsCount is defined %}
-                                <span class="badge" title="days you've written 130 words :)">{{ user130WordsCount }}</span>
-                            {% endif %}
+                            <span class="badge" title="days you've written 130 words :)">{{ one_thirty_service.getUser130WordsCount(app.user) }}</span>
                         </a>
                     </li>
                     <li class="dropdown">

@@ -4,7 +4,6 @@ namespace OneThirtyWordsBundle\Controller;
 
 use OneThirtyWordsBundle\Entity\Category;
 use OneThirtyWordsBundle\Entity\Post;
-use OneThirtyWordsBundle\Service\OneThirtyService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -44,7 +43,6 @@ class DefaultController extends Controller
             'categories' => $categories,
             'posts' => $posts,
             'user' => $this->getUser(),
-            'user130WordsCount' => $this->get('one_thirty_service')->getUser130WordsCount($this->getUser()),
         ));
     }
 
