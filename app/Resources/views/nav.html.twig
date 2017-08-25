@@ -28,7 +28,7 @@
                         <a>
                             {{ app.user.username }}
                             <span class="badge" title="days you've written 130 words :)">
-                                {{ one_thirty_service.getUser130WordsCount(app.user) }}
+                                days: {{ one_thirty_service.getUser130WordsCount(app.user) }}
                             </span>
                             {% set streak = one_thirty_service.getUser130WordsStreak(app.user) %}
                             <span class="badge" title="consecutive days you've written 130 words" style="background-color: {{ streak > 0 ? '#468847' : '#d9534f' }}">
