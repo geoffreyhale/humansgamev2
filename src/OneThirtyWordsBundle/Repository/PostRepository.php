@@ -27,7 +27,6 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('p')
             ->join('p.user', 'u')
             ->where('u.id = :user_id')
-            ->groupBy('p.date', 'u')
             ->orderBy('p.date', 'DESC')
             ->setParameter('user_id', $user->getId())
             ->getQuery()
