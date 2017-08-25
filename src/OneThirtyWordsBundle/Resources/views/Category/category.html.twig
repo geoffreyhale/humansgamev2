@@ -3,11 +3,11 @@
 {% block content %}
     <div class="container-fluid">
         <h1><i class="fa fa-folder-open" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
-        <p><a href="{{ path('editCategory', {'id' : category.id}) }}">edit category</a></p>
-        {% if posts is empty %}
-            <p>No posts yet.  Write one now!</p>
-            <p><a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}">write</a></p>
-        {% else %}
+        <div>
+            <a href="{{ path('editCategory', {'id' : category.id}) }}" class="btn btn-primary btn-lg">Edit Category</a>
+            <a href="{{ path('newPostByCategory', {'category_id' : category.id}) }}" class="btn btn-primary btn-lg">New Post</a>
+        </div>
+        {% if posts is not empty %}
             <table class="table table-borderless table-hover">
                 <thead>
                 <tr>

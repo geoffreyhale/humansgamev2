@@ -23,7 +23,7 @@
                 {% if category.hide == true %}
                     <li class="list-group-item">
                         <a href="{{ path('getCategory', {'id' : category.id}) }}">{{ category.name }}</a>
-                        <span class="badge" style="margin-left: 15px;">{{ category.post_count }}</span>
+                        <span class="badge" style="margin-left: 15px;" title="posts">{{ category.post_count }}</span>
                     </li>
                 {% endif %}
             {%  endfor %}
