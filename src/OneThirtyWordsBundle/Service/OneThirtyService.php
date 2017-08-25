@@ -17,6 +17,39 @@ class OneThirtyService
     }
 
     /**
+     * Calculate Posts Data By Date
+     *
+     * Keyed by format('Ymd') (yyyymmdd) from post(s) DateTime
+     * 'DateTime'  => DateTime from post(s)
+     * 'wordCount' => string accumulates count of words from all posts per date
+     * '130'
+     *
+     * @param array $posts
+     * @return array $postsDataByDate
+     */
+    private function calculatePostsDataByDate($posts)
+    {
+        $postsDataByDate = array();
+
+        foreach ($posts as $post) {
+            $date = $post->getDate()->format('Ymd');
+
+            if (isset($postsDataByDate[$date])) {
+                $postsDataByDate[$date]['wordCount'] += str_word_count($post->getBody());
+            } else {
+                $postsDataByDate[$date] = array(
+                    'DateTime' => $post->getDate(),
+                    'wordCount' => str_word_count($post->getBody()),
+                );
+            }
+
+            $postsDataByDate[$date]['130'] = $postsDataByDate[$date]['wordCount'] >= 130;
+        }
+
+        return $postsDataByDate;
+    }
+
+    /**
      * Get User 130 Words Count
      *
      * Get the number of days the user wrote at least 130 words
@@ -28,35 +61,46 @@ class OneThirtyService
     {
         $posts = $this->em->getRepository(Post::class)->getPostsByUser($user);
 
-        /**
-         * Days Words
-         *
-         * Keyed by yyyymmdd from post(s) DateTime
-         * 'DateTime'  => DateTime from post(s)
-         * 'wordCount' => string accumulates count of words from all posts per date
-         * '130'       => bool if at least 130 words that day
-         */
-        $userDaysWords = array();
-        foreach ($posts as $post) {
-            $postDateKey = $post->getDate()->format('Ymd');
+        $postsDataByDate = $this->calculatePostsDataByDate($posts);
 
-            if (isset($userDaysWords[$postDateKey])) {
-                $userDaysWords[$postDateKey]['wordCount'] += str_word_count($post->getBody());
-            } else {
-                $userDaysWords[$postDateKey] = array(
-                    'DateTime' => $post->getDate(),
-                    'wordCount' => str_word_count($post->getBody()),
-                );
-            }
-
-            $userDaysWords[$postDateKey]['130'] = $userDaysWords[$postDateKey]['wordCount'] >= 130;
-        }
-
-        $user130WordsCount = count(array_filter($userDaysWords, function($dayWords){
-            return $dayWords['130'];
+        $user130WordsCount = count(array_filter($postsDataByDate, function($dateData){
+            return $dateData['130'];
         }));
 
         return $user130WordsCount;
+    }
+
+    public function getUser130WordsStreak(User $user)
+    {
+        $posts = $this->em->getRepository(Post::class)->getPostsByUser($user);
+
+        $postsDataByDate = $this->calculatePostsDataByDate($posts);
+
+        $streak = 0;
+        $dateTimeIterator = new \DateTime('now');
+
+        if (
+            array_key_exists($dateTimeIterator->format('Ymd'), $postsDataByDate)
+            && $postsDataByDate[$dateTimeIterator->format('Ymd')]['130']
+        ) {
+            $streak++;
+        }
+
+        $streakContinues = true;
+        while ($streakContinues) {
+            $dateTimeIterator->sub(new \DateInterval('P1D'));
+
+            if (
+                array_key_exists($dateTimeIterator->format('Ymd'), $postsDataByDate)
+                && $postsDataByDate[$dateTimeIterator->format('Ymd')]['130']
+            ) {
+                $streak++;
+            } else {
+                $streakContinues = false;
+            }
+        }
+
+        return $streak;
     }
     
     public function getUsersWith130WordsCounts($min130s = 0, $limit = 0)
