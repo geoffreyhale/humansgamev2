@@ -25,16 +25,14 @@
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <ul class="nav navbar-nav navbar-right nav-user-container">
                     <li class="hidden-xs hidden-xs">
-                        <a>
-                            {{ app.user.username }}
-                            <span class="badge" title="days you've written 130 words :)">
-                                days: {{ one_thirty_service.getUser130WordsCount(app.user) }}
-                            </span>
-                            {% set streak = one_thirty_service.getUser130WordsStreak(app.user) %}
-                            <span class="badge" title="consecutive days you've written 130 words" style="background-color: {{ streak > 0 ? '#468847' : '#d9534f' }}">
-                                streak: {{ streak }}
-                            </span>
-                        </a>
+                        <a href="{{ path('getUser', {'user' : user.id}) }}" class="navbar-link" style="display: inline-block;">{{ app.user.username }}</a>
+                        <span class="badge" title="days you've written 130 words :)">
+                            days: {{ one_thirty_service.getUser130WordsCount(app.user) }}
+                        </span>
+                        {% set streak = one_thirty_service.getUser130WordsStreak(app.user) %}
+                        <span class="badge" title="consecutive days you've written 130 words" style="background-color: {{ streak > 0 ? '#468847' : '#d9534f' }}">
+                            streak: {{ streak }}
+                        </span>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i><span class="caret"></span></a>
