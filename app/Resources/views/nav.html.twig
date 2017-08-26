@@ -27,7 +27,7 @@
                     <li class="hidden-xs hidden-xs">
                         <a href="{{ path('getUser', {'user' : app.user.id}) }}" class="navbar-link" style="display: inline-block;">{{ app.user.displayName }}</a>
                         <span class="badge" title="days you've written 130 words :)">
-                            days: {{ one_thirty_service.getUser130WordsCount(app.user) }}
+                            {{ one_thirty_service.getUser130WordsCount(app.user) }}
                         </span>
                         {% set streak = one_thirty_service.getUser130WordsStreak(app.user) %}
                         <span class="badge" title="consecutive days you've written 130 words" style="background-color: {{ streak > 0 ? '#468847' : '#d9534f' }}">

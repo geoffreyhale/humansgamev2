@@ -1,10 +1,10 @@
-<table class="table table-borderless table-hover">
+<table class="table table-borderless table-hover" style="display: inline-block;">
     <tbody>
     {% for user in users %}
         <tr>
             <td>{{ loop.index }}</td>
             <td style="white-space: nowrap;">{{ user.displayName }}</td>
-            <td style="width: 100%;" title="total word count">{{ user.wordcount|number_format }}</td>
+            <td>{{ user.wordcount|number_format }} words</td>
         </tr>
     {% endfor %}
     </tbody>

@@ -1,7 +1,7 @@
 {% if users is empty %}
     <p>No posts yet today.  Be the first!</p>
 {% else %}
-    <table class="table table-borderless table-hover">
+    <table class="table table-borderless table-hover" style="display: inline-block;">
         <tbody>
         {% for username, user in users %}
             <tr>
@@ -9,7 +9,7 @@
                 <td style="white-space: nowrap;">
                     {{ username }}
                 </td>
-                <td style="width: 100%;">
+                <td>
                     {{ user.wordcount }} words
                 </td>
             </tr>

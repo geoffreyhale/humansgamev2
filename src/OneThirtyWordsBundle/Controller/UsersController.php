@@ -24,6 +24,15 @@ class UsersController extends Controller
             'users' => $this->get('one_thirty_service')->getUsersWith130WordsCounts($min130s, $limit),
         ));
     }
+    /**
+     * @Route("/by-streak", name="getUsersByStreak")
+     */
+    public function getUsersByStreakAction()
+    {
+        return $this->render('OneThirtyWordsBundle:Users:partials/users_by_streak.html.twig', array(
+            'users' => $this->get('one_thirty_service')->getUsersByStreak(),
+        ));
+    }
 
     /**
      * @Route("/total-word-count", name="getUsersByTotalWordCount")

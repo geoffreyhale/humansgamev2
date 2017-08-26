@@ -2,21 +2,31 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="col-md-12">
-            <h3><i class="fa fa-users" aria-hidden="true"></i> Today</h3>
-            {{ render(controller('OneThirtyWordsBundle:Users:getUsersToday')) }}
+        <div class="row">
+            <div class="col-md-6">
+                <h3><i class="fa fa-trophy" aria-hidden="true"></i> Streak</h3>
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersByStreak')) }}
+            </div>
+            <div class="col-md-6">
+                <h3><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Today</h3>
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersToday')) }}
+            </div>
         </div>
-        <div class="col-md-3">
-            <h3><i class="fa fa-trophy" aria-hidden="true"></i> 130 Word Days</h3>
-            {{ render(controller('OneThirtyWordsBundle:Users:getUsersBy130s')) }}
+        <div class="row">
+            <div class="col-md-6">
+                <h3><i class="fa fa-trophy" aria-hidden="true" title="Total 130 Word Days"></i> Total</h3>
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersBy130s')) }}
+            </div>
+            <div class="col-md-6">
+                <h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Total</h3>
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersByTotalWordCount')) }}
+            </div>
         </div>
-        <div class="col-md-4">
-            <h3><i class="fa fa-trophy" aria-hidden="true"></i> Total Word Count</h3>
-            {{ render(controller('OneThirtyWordsBundle:Users:getUsersByTotalWordCount')) }}
-        </div>
-        <div class="col-md-5">
-            <h3><i class="fa fa-trophy" aria-hidden="true"></i> Recent Posts</h3>
-            {{ render(controller('OneThirtyWordsBundle:Community:getRecentUsersByPostDate', { 'limit': 43 })) }}
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i class="fa fa-trophy" aria-hidden="true"></i> Recent Posts</h3>
+                {{ render(controller('OneThirtyWordsBundle:Community:getRecentUsersByPostDate', { 'limit': 43 })) }}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -102,6 +102,31 @@ class OneThirtyService
 
         return $streak;
     }
+
+    public function getUsersByStreak()
+    {
+        $users = $this->em->getRepository(User::class)->findAll();
+
+        $usersData = array();
+
+        foreach ($users as $user) {
+            $userCurrentStreak = $this->getUser130WordsStreak($user);
+
+            if ($userCurrentStreak > 0) {
+                $usersData[$user->getId()] = array(
+                    'streak' => $userCurrentStreak,
+                    'displayName' => $user->getDisplayName() ? $user->getDisplayName() : $user->getUsername(),
+                );
+            }
+        }
+
+        uasort($usersData, function ($u1, $u2) {
+            if ($u2['streak'] == $u1['streak']) return 0;
+            return $u2['streak'] < $u1['streak'] ? -1 : 1;
+        });
+
+        return $usersData;
+    }
     
     public function getUsersWith130WordsCounts($min130s = 0, $limit = 0)
     {
