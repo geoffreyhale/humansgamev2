@@ -53,6 +53,23 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $displayName = $form->getData()->getDisplayName();
+
+            $usersWithDisplayNameAsDisplayName = $em->getRepository(User::class)->findBy([
+                'displayName' => $displayName,
+            ]);
+
+            $usersWithDisplayNameAsUsername = $em->getRepository(User::class)->findBy([
+                'username' => $displayName,
+            ]);
+
+            if ($usersWithDisplayNameAsDisplayName || $usersWithDisplayNameAsUsername) {
+                return $this->render('OneThirtyWordsBundle:User:editDisplayName.html.twig', array(
+                    'form' => $form->createView(),
+                    'message' => array('warning', sprintf('Display name %s is not available. Please try a different display name.', $displayName)),
+                    'user' => $user,
+                ));
+            }
+
             $user->setDisplayName($displayName);
             $em->persist($user);
             $em->flush();

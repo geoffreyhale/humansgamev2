@@ -1,6 +1,11 @@
 /**
 Bootstrap
  */
+.alert-dismissable .close,
+.alert-dismissible .close {
+    right: 0;
+}
+
 .navbar {
     margin-bottom: 0;
     border: none;
