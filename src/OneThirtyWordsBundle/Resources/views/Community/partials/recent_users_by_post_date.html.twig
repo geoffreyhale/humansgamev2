@@ -7,8 +7,7 @@
             </td>
             <td style="width: 100%;">
                 {% for post in posts %}
-                    {{ post.user }}
-                    {% if not loop.last %}, {% endif %}
+                    {{ post.user.displayName ? post.user.displayName : post.user }}{% if not loop.last %}, {% endif %}
                 {% endfor %}
             </td>
         </tr>

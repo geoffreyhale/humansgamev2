@@ -38,7 +38,11 @@ class UsersController extends Controller
 
         /** @var User $user */
         foreach ($users as $user) {
-            $usersData[$user->getId()] = ['wordcount' => 0, 'username' => $user->getUsername()];
+            $usersData[$user->getId()] = array(
+                'wordcount' => 0,
+                'displayName' => $user->getDisplayName() ? $user->getDisplayName() : $user->getUsername()
+            );
+
             $posts = $em->getRepository(Post::class)->getPostsByUser($user);
 
             /** @var Post $post */

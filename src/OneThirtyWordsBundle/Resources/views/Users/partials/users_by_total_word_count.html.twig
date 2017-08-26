@@ -3,7 +3,7 @@
     {% for user in users %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td style="white-space: nowrap;">{{ user.username }}</td>
+            <td style="white-space: nowrap;">{{ user.displayName }}</td>
             <td style="width: 100%;" title="total word count">{{ user.wordcount|number_format }}</td>
         </tr>
     {% endfor %}

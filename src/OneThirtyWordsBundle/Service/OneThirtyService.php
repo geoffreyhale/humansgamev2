@@ -114,8 +114,8 @@ class OneThirtyService
 
             if ($user130WordsCount >= $min130s) {
                 $usersData[$user->getId()] = array(
-                    'username' => $user->getUsername(),
                     '130' => $user130WordsCount,
+                    'displayName' => $user->getDisplayName() ? $user->getDisplayName() : $user->getUsername(),
                 );
             }
         }
