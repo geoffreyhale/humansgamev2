@@ -25,6 +25,13 @@ class User extends BaseUser
      */
     private $categories;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="display_name", type="string", length=255)
+     */
+    private $displayName;
+
     public function __construct()
     {
         parent::__construct();
@@ -63,5 +70,25 @@ class User extends BaseUser
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
+    }
+
+    /**
+     * @param string $displayName
+     *
+     * @return User
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->displayName = $displayName;
+
+        return $this;
     }
 }

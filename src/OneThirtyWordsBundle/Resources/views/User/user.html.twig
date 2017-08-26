@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% if user is defined %}
+            <h3>{{ user.displayName ? user.displayName : user.username }}</h3>
+        {% endif %}
+    </div>
+{% endblock %}
