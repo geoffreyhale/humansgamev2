@@ -114,6 +114,7 @@ class PostController extends Controller
         return $this->render('OneThirtyWordsBundle:Post:edit.html.twig', array(
             'form' => $form->createView(),
             'post' => $post,
+            'postSavedWordCount' => str_word_count($post->getBody()),
         ));
     }
 

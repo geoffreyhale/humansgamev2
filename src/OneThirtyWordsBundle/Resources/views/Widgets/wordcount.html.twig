@@ -1,1 +1,12 @@
-<div class="wordcount"></div>
+<div class="wordcount-container"><span class="wordcount"></span> words</div>
+
+{% if postSavedWordCount is defined %}
+    <div class="alert alert-warning">
+        {{ postSavedWordCount }} words saved (this post)
+    </div>
+
+    {#{% set wordCount = user_service.getUserwordCountToday() %}#}
+    {#<div class="alert {{ (wordCount < 130) ? 'alert-warning' : 'alert-success' }}">#}
+        {#{{ wordCount }} words saved (today)#}
+    {#</div>#}
+{% endif %}
