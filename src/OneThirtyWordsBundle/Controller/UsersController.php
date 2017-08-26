@@ -18,10 +18,10 @@ class UsersController extends Controller
     /**
      * @Route("/by-130s", name="getUsersBy130s")
      */
-    public function getUsersBy130sAction($min130s = 0, $limit = 0)
+    public function getUsersBy130sAction($min = 0)
     {
         return $this->render('OneThirtyWordsBundle:Users:partials/users_by_130s.html.twig', array(
-            'users' => $this->get('one_thirty_service')->getUsersWith130WordsCounts($min130s, $limit),
+            'users' => $this->get('one_thirty_service')->getUsersWith130WordsCounts($min),
         ));
     }
     /**
@@ -37,7 +37,7 @@ class UsersController extends Controller
     /**
      * @Route("/total-word-count", name="getUsersByTotalWordCount")
      */
-    public function getUsersByTotalWordCountAction()
+    public function getUsersByTotalWordCountAction($minWordCount = 0)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -57,6 +57,12 @@ class UsersController extends Controller
             /** @var Post $post */
             foreach ($posts as $post) {
                 $usersData[$user->getId()]['wordcount'] += str_word_count($post->getBody());
+            }
+        }
+
+        foreach ($usersData as $key => $user) {
+            if ($user['wordcount'] < $minWordCount) {
+                unset($usersData[$key]);
             }
         }
 

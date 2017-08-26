@@ -128,7 +128,7 @@ class OneThirtyService
         return $usersData;
     }
     
-    public function getUsersWith130WordsCounts($min130s = 0, $limit = 0)
+    public function getUsersWith130WordsCounts($min = 0, $limit = 0)
     {
         $users = $this->em->getRepository(User::class)->findAll();
 
@@ -137,7 +137,7 @@ class OneThirtyService
         foreach ($users as $user) {
             $user130WordsCount = $this->getUser130WordsCount($user);
 
-            if ($user130WordsCount >= $min130s) {
+            if ($user130WordsCount >= $min) {
                 $usersData[$user->getId()] = array(
                     '130' => $user130WordsCount,
                     'displayName' => $user->getDisplayName() ? $user->getDisplayName() : $user->getUsername(),

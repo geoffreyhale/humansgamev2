@@ -15,17 +15,17 @@
         <div class="row">
             <div class="col-md-6">
                 <h3><i class="fa fa-trophy" aria-hidden="true" title="Total 130 Word Days"></i> Total</h3>
-                {{ render(controller('OneThirtyWordsBundle:Users:getUsersBy130s')) }}
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersBy130s', { 'min': 1 })) }}
             </div>
             <div class="col-md-6">
                 <h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Total</h3>
-                {{ render(controller('OneThirtyWordsBundle:Users:getUsersByTotalWordCount')) }}
+                {{ render(controller('OneThirtyWordsBundle:Users:getUsersByTotalWordCount', { 'minWordCount': 130 })) }}
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3><i class="fa fa-trophy" aria-hidden="true"></i> Recent Posts</h3>
-                {{ render(controller('OneThirtyWordsBundle:Community:getRecentUsersByPostDate', { 'limit': 43 })) }}
+                <h3><i class="fa fa-calendar" aria-hidden="true"></i> Recent</h3>
+                {{ render(controller('OneThirtyWordsBundle:Community:getRecentUsersByPostDate', { 'limit': 7 })) }}
             </div>
         </div>
     </div>

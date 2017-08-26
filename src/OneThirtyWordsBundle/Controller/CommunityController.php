@@ -20,9 +20,7 @@ class CommunityController extends Controller
      */
     public function communityAction()
     {
-        return $this->render('OneThirtyWordsBundle:Community:index.html.twig', array(
-            'users' => $this->get('one_thirty_service')->getUsersWith130WordsCounts(),
-        ));
+        return $this->render('OneThirtyWordsBundle:Community:index.html.twig');
     }
 
     /**
