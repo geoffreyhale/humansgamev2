@@ -4,6 +4,9 @@
     <div class="container-fluid">
         {% if user is defined %}
             <h3>{{ user.displayName ? user.displayName : user.username }}</h3>
+            {% if not user.displayName %}
+                <a href="{{ path('editUserDisplayName', {'user' : user.id}) }}" class="btn btn-primary btn-lg" style="display: inline-block;">Set Display Name</a>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}
