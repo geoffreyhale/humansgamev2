@@ -74,6 +74,8 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+    # all email will be sent to a delivery_addresses instead of the address actually specified when sending the message
+    delivery_addresses: '%mailer_delivery_addresses%'
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
