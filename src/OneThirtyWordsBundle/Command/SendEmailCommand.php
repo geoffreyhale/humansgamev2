@@ -25,44 +25,43 @@ class SendEmailCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Executing Send Email Command');
+        $from = 'support@130words.com';
 
-//        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-//        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-//
-        $toEmail = 'geoffreyhale@gmail.com';
-//
-//        $message = (new \Swift_Message('Daily Reminder Email from 130words.com'))
-//            ->setFrom('support@130words.com')
-//            ->setTo($toEmail)
-//            ->setBody(
-//                $this->getContainer()->get('templating')->render(
-//                    'OneThirtyWordsBundle:Email:test.html.twig',
-//                    array('name' => 'ThisIsMyTestName')
-//                ),
-//                'text/html'
-//            )
-//        ;
-//
-//        if ($this->getContainer()->get('mailer')->send($message)) {
-//            $output->writeln('Mailer sent message to ' . $toEmail);
-//        } else {
-//            $output->writeln('Mailer failed to send message to ' . $toEmail);
-//            $mailLogger->dump();
-//        }
+        $to = 'geoffreyhale@gmail.com';
+        $subject = '130 Words';
+        $body = "Hi!\r\n\r\n  Don't forget to write 130 words today!\r\n\r\n  Link: 130words.com\r\n\r\n  Write on,\r\n  130 Words Support Team";
+        $headers = "From: $from" . "\r\n" .
+            "Reply-To: $from" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion()
+        ;
 
-        $subject = 'Have you written 130 words today?';
-        $message = 'This is a friendly reminder to write at 130words.com.';
-        $headers = 'From: support@130words.com' . "\r\n" .
-            'Reply-To: support@130words.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-        if (mail($toEmail, $subject, $message, $headers)) {
+        if (mail($to, $subject . " (mail)", $body, $headers)) {
             $output->writeln('mail success');
         } else {
             $output->writeln('mail failed');
         }
 
-        $output->writeln('Ending Send Email Command');
+//        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+//        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+//
+        $message = (new \Swift_Message($subject . " (Swift Mailer)"))
+            ->setFrom($from)
+            ->setTo($to)
+            ->setBody(
+                $body
+//                $this->getContainer()->get('templating')->render(
+//                    'OneThirtyWordsBundle:Email:test.html.twig',
+//                    array('name' => 'ThisIsMyTestName')
+//                ),
+//                'text/html'
+            )
+        ;
+
+        if ($this->getContainer()->get('mailer')->send($message)) {
+            $output->writeln('Swift Mailer sent message to ' . $to);
+        } else {
+            $output->writeln('Swift Mailer failed to send message to ' . $to);
+//            $mailLogger->dump();
+        }
     }
 }
