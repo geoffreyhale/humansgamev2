@@ -27,28 +27,40 @@ class SendEmailCommand extends ContainerAwareCommand
     {
         $output->writeln('Executing Send Email Command');
 
-        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-
+//        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+//        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+//
         $toEmail = 'geoffreyhale@gmail.com';
+//
+//        $message = (new \Swift_Message('Daily Reminder Email from 130words.com'))
+//            ->setFrom('support@130words.com')
+//            ->setTo($toEmail)
+//            ->setBody(
+//                $this->getContainer()->get('templating')->render(
+//                    'OneThirtyWordsBundle:Email:test.html.twig',
+//                    array('name' => 'ThisIsMyTestName')
+//                ),
+//                'text/html'
+//            )
+//        ;
+//
+//        if ($this->getContainer()->get('mailer')->send($message)) {
+//            $output->writeln('Mailer sent message to ' . $toEmail);
+//        } else {
+//            $output->writeln('Mailer failed to send message to ' . $toEmail);
+//            $mailLogger->dump();
+//        }
 
-        $message = (new \Swift_Message('Daily Reminder Email from 130words.com'))
-            ->setFrom('support@130words.com')
-            ->setTo($toEmail)
-            ->setBody(
-                $this->getContainer()->get('templating')->render(
-                    'OneThirtyWordsBundle:Email:test.html.twig',
-                    array('name' => 'ThisIsMyTestName')
-                ),
-                'text/html'
-            )
-        ;
+        $subject = 'Have you written 130 words today?';
+        $message = 'This is a friendly reminder to write at 130words.com.';
+        $headers = 'From: noreply@130words.com' . "\r\n" .
+            'Reply-To: noreply@130words.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
 
-        if ($this->getContainer()->get('mailer')->send($message)) {
-            $output->writeln('Mailer sent message to ' . $toEmail);
+        if (mail($toEmail, $subject, $message, $headers)) {
+            $output->writeln('mail success');
         } else {
-            $output->writeln('Mailer failed to send message to ' . $toEmail);
-            $mailLogger->dump();
+            $output->writeln('mail failed');
         }
 
         $output->writeln('Ending Send Email Command');
