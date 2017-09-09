@@ -27,9 +27,14 @@ class SendEmailCommand extends ContainerAwareCommand
     {
         $output->writeln('Executing Send Email Command');
 
+        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
+        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
+
+        $toEmail = 'geoffreyhale@gmail.com';
+
         $message = (new \Swift_Message('Daily Reminder Email from 130words.com'))
             ->setFrom('support@130words.com')
-            ->setTo('geoffreyhale@gmail.com')
+            ->setTo($toEmail)
             ->setBody(
                 $this->getContainer()->get('templating')->render(
                     'OneThirtyWordsBundle:Email:test.html.twig',
@@ -39,7 +44,12 @@ class SendEmailCommand extends ContainerAwareCommand
             )
         ;
 
-        $this->getContainer()->get('mailer')->send($message);
+        if ($this->getContainer()->get('mailer')->send($message)) {
+            $output->writeln('Mailer sent message to ' . $toEmail);
+        } else {
+            $output->writeln('Mailer failed to send message to ' . $toEmail);
+            $mailLogger->dump();
+        }
 
         $output->writeln('Ending Send Email Command');
     }
