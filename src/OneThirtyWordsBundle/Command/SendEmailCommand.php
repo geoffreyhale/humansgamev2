@@ -53,8 +53,8 @@ class SendEmailCommand extends ContainerAwareCommand
 
         $subject = 'Have you written 130 words today?';
         $message = 'This is a friendly reminder to write at 130words.com.';
-        $headers = 'From: noreply@130words.com' . "\r\n" .
-            'Reply-To: noreply@130words.com' . "\r\n" .
+        $headers = 'From: support@130words.com' . "\r\n" .
+            'Reply-To: support@130words.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         if (mail($toEmail, $subject, $message, $headers)) {
