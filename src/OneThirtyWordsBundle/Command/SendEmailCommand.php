@@ -29,31 +29,27 @@ class SendEmailCommand extends ContainerAwareCommand
 
         $to = 'geoffreyhale@gmail.com';
         $subject = '130 Words';
-        $body = "Hi!\r\n\r\n  Don't forget to write 130 words today!\r\n\r\n  Link: 130words.com\r\n\r\n  Write on,\r\n  130 Words Support Team";
+        $body = "Hi!\r\n\r\nDon't forget to write 130 words today!\r\n\r\nLink: 130words.com\r\n\r\nWrite on,\r\n130 Words Support Team";
         $headers = "From: $from" . "\r\n" .
             "Reply-To: $from" . "\r\n" .
             "X-Mailer: PHP/" . phpversion()
         ;
 
-        if (mail($to, $subject . " (mail)", $body, $headers)) {
-            $output->writeln('mail success');
-        } else {
-            $output->writeln('mail failed');
-        }
+//        if (mail($to, $subject . " (mail)", $body, $headers)) {
+//            $output->writeln('mail success');
+//        } else {
+//            $output->writeln('mail failed');
+//        }
 
-//        $mailLogger = new \Swift_Plugins_Loggers_ArrayLogger();
-//        $this->getContainer()->get('mailer')->registerPlugin(new \Swift_Plugins_LoggerPlugin($mailLogger));
-//
         $message = (new \Swift_Message($subject . " (Swift Mailer)"))
             ->setFrom($from)
             ->setTo($to)
             ->setBody(
-                $body
-//                $this->getContainer()->get('templating')->render(
-//                    'OneThirtyWordsBundle:Email:test.html.twig',
-//                    array('name' => 'ThisIsMyTestName')
-//                ),
-//                'text/html'
+                $this->getContainer()->get('templating')->render(
+                    'OneThirtyWordsBundle:Email:reminder.html.twig',
+                    array('name' => 'ThisIsMyTestName')
+                ),
+                'text/html'
             )
         ;
 
@@ -61,7 +57,6 @@ class SendEmailCommand extends ContainerAwareCommand
             $output->writeln('Swift Mailer sent message to ' . $to);
         } else {
             $output->writeln('Swift Mailer failed to send message to ' . $to);
-//            $mailLogger->dump();
         }
     }
 }
