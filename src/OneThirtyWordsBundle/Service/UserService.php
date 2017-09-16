@@ -4,6 +4,7 @@ namespace OneThirtyWordsBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use OneThirtyWordsBundle\Entity\Post;
+use OneThirtyWordsBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class UserService
@@ -28,6 +29,21 @@ class UserService
             return null;
         }
 
+        $posts = $this->em->getRepository(Post::class)->findBy([
+            'date' => new \DateTime('today'),
+            'user' => $user,
+        ]);
+
+        $wordcount = 0;
+        foreach ($posts as $post) {
+            $wordcount += str_word_count($post->getBody());
+        }
+
+        return $wordcount;
+    }
+
+    public function getUserWordCountTodayByUser(User $user)
+    {
         $posts = $this->em->getRepository(Post::class)->findBy([
             'date' => new \DateTime('today'),
             'user' => $user,

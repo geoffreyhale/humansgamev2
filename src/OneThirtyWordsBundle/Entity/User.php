@@ -32,6 +32,13 @@ class User extends BaseUser
      */
     private $displayName;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="email_reminders", type="boolean", options={"default" : 0})
+     */
+    private $emailReminders = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -91,4 +98,26 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isEmailReminders()
+    {
+        return $this->emailReminders;
+    }
+
+    /**
+     * @param bool $emailReminders
+     *
+     * @return User
+     */
+    public function setEmailReminders($emailReminders)
+    {
+        $this->emailReminders = $emailReminders;
+
+        return $this;
+    }
+
+
 }
