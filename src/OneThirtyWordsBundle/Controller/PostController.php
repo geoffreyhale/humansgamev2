@@ -50,7 +50,7 @@ class PostController extends Controller
     /**
      * @Route("/post/new", name="newPost")
      */
-    public function newPostAction(Request $request)
+    public function newPostAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -59,28 +59,16 @@ class PostController extends Controller
             ->setUser($this->getUser())
         ;
 
-        $form = $this->createFormBuilder($post)
-            ->add('body', TextareaType::class)
-            ->add('submit', SubmitType::class, array('label' => 'Save'))
-            ->getForm()
-        ;
+        $em->persist($post);
+        $em->flush();
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $post = $form->getData();
-            $em->persist($post);
-            $em->flush();
-
-            return $this->redirectToRoute('editPost', array(
-                'id'  => $post->getId(),
-            ));
-        }
-
-        return $this->render('OneThirtyWordsBundle:Post:edit.html.twig', array(
-            'form' => $form->createView(),
-            'post' => $post,
-        ));
+        return $this->redirect(
+            $this->generateUrl(
+                'editPost',
+                array('id'  => $post->getId()),
+                302
+            )
+        );
     }
 
     /**
