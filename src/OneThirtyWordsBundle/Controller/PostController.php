@@ -50,7 +50,7 @@ class PostController extends Controller
     /**
      * @Route("/post/new", name="newPost")
      */
-    public function newPostAction()
+    public function newPostAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -58,6 +58,17 @@ class PostController extends Controller
             ->setDate(new \DateTime)
             ->setUser($this->getUser())
         ;
+
+        $category_id = $request->request->get('category_id');
+        if ($category_id) {
+            $category = $this->getDoctrine()->getManager()->getRepository(Category::class)->findOneBy(array('id' => $category_id));
+
+            if ($this->getUser() !== $category->getUser()) {
+                throw new \Exception("ACCESS DENIED: This is not your category.");
+            }
+
+            $post->setCategory($category);
+        }
 
         $em->persist($post);
         $em->flush();
@@ -103,38 +114,6 @@ class PostController extends Controller
             'form' => $form->createView(),
             'post' => $post,
             'postSavedWordCount' => str_word_count($post->getBody()),
-        ));
-    }
-
-    /**
-     * @Route("/new-post-by-category/{category_id}", name="newPostByCategory")
-     */
-    public function newPostByCategoryAction($category_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $category = $em->getRepository(Category::class)->find($category_id);
-
-        if ($category->getUser() !== $this->getUser()) {
-            throw new \Exception("ACCESS DENIED: This is not your category.");
-        }
-
-        $post = $em->getRepository(Post::class)->findOneBy([
-            'category' => $category,
-            'date' => new \DateTime('today'),
-        ]);
-
-        if (!$post) {
-            $post = (new Post())
-                ->setCategory($category)
-                ->setDate(new \DateTime)
-                ->setUser($this->getUser());
-            $em->persist($post);
-            $em->flush();
-        }
-
-        return $this->forward('OneThirtyWordsBundle:Post:editPost', array(
-            'id'  => $post->getId(),
         ));
     }
 }
