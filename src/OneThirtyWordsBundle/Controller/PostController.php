@@ -4,9 +4,11 @@ namespace OneThirtyWordsBundle\Controller;
 
 use OneThirtyWordsBundle\Entity\Category;
 use OneThirtyWordsBundle\Entity\Post;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use OneThirtyWordsBundle\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
@@ -99,6 +101,19 @@ class PostController extends Controller
 
         $form = $this->createFormBuilder($post)
             ->add('body', TextareaType::class)
+            ->add('category', EntityType::class, array(
+                'class' => 'OneThirtyWordsBundle:Category',
+                'query_builder' => function (CategoryRepository $cr) {
+                    return $cr->createQueryBuilder('c')
+                        ->where('c.user = :user')
+//                        ->andWhere('c.hide = :hide')
+                        ->orderBy('c.name')
+                        ->setParameter('user', $this->getUser())
+//                        ->setParameter('hide', 0)
+                        ;
+                },
+                'choice_label' => 'name'
+            ))
             ->add('submit', SubmitType::class, array('label' => 'Save'))
             ->getForm();
 
