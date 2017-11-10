@@ -5,7 +5,7 @@
         <h1><i class="fa fa-folder-open" aria-hidden="true"></i> {{ category.name }} <span class="badge">{{ posts|length }}</span></h1>
         <div>
             <a href="{{ path('editCategory', {'id' : category.id}) }}" class="btn btn-primary">Edit Category</a>
-            <form action="{{ path('newPost') }}" method="POST">
+            <form action="{{ path('newPost') }}" method="POST" style="margin-top: 10px;">
                 <input type="hidden" id="category_id" name="category_id" value="{{ category.id }}">
                 <input type="submit" value="New Post" class="btn btn-primary" />
             </form>
