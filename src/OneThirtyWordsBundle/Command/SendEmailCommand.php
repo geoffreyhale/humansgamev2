@@ -27,33 +27,31 @@ class SendEmailCommand extends ContainerAwareCommand
             'emailReminders' => true,
         ]);
 
-        $bcc = [];
         foreach ($users as $user) {
             if ($this->getContainer()->get('user_service')->getUserWordCountTodayByUser($user) < 130) {
                 $displayName = $user->getDisplayName() ? $user->getDisplayName() : $user->getUsername();
                 $email = $user->getEmail();
+                $to = [$email => $displayName];
 
-                $bcc[$email] = $displayName;
+                $message = (new \Swift_Message())
+                    ->setSubject('130 Words Reminder')
+                    ->setFrom(['support@130words.com' => '130 Words'])
+                    ->setTo($to)
+                    ->setBody(
+                        $this->getContainer()->get('templating')->render(
+                            'OneThirtyWordsBundle:Email:reminder.html.twig',
+                            array('name' => $displayName)
+                        ),
+                        'text/html'
+                    )
+                ;
+
+                if ($this->getContainer()->get('mailer')->send($message)) {
+                    $output->writeln('Swift Mailer sent message to ' . $to);
+                } else {
+                    $output->writeln('Swift Mailer failed to send message to ' . $to);
+                }
             }
-        }
-
-        $message = (new \Swift_Message())
-            ->setSubject('130 Words Reminder')
-            ->setFrom(['support@130words.com' => '130 Words'])
-            ->setBcc($bcc)
-            ->setBody(
-                $this->getContainer()->get('templating')->render(
-                    'OneThirtyWordsBundle:Email:reminder.html.twig',
-                    array('name' => 'ThisIsMyTestName')
-                ),
-                'text/html'
-            )
-        ;
-
-        if ($this->getContainer()->get('mailer')->send($message)) {
-            $output->writeln('Swift Mailer sent message to ' . $bcc);
-        } else {
-            $output->writeln('Swift Mailer failed to send message to ' . $bcc);
         }
     }
 }
