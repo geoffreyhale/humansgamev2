@@ -1,17 +1,18 @@
-# 130 Words
+# Humans Game
 
-130 Words is a private daily journaling web app.  It encourages writing at least 130 words every day.
+Humans Game is an emergent value existence-simulation.
+
+## Initial Setup
+
+```
+git clone <thisRepository>
+```
 
 ## Deploy
 
 ```
-export SYMFONY_ENV=prod
-php composer.phar install --no-dev --optimize-autoloader
+composer install
 bin/console doctrine:schema:update --force
-bin/console cache:clear --env=prod --no-debug
+bin/console cache:clear --env=prod
 bin/console server:start
-bin/console send-email --env=prod
 ```
-
-http://symfony.com/doc/current/deployment.html
-
