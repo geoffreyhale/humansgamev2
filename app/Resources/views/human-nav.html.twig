@@ -1,0 +1,17 @@
+{# Human Nav #}
+<ul id="human-nav" class="nav">
+
+    {## Authenticated #}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {# Human selected #}
+        {#{% if app.user.human is not null %}#}
+            <li>Human go to:</li>
+            <li><a>Pixel Farm (coming soon)</a></li>
+            {#<li style="float: right">human name: {{ app.user.human.name }}</li>#}
+
+        {# Human unselected #}
+        {#{% elseif %}#}
+
+        {#{% endif %}#}
+    {% endif %}
+</ul>

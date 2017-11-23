@@ -1,72 +1,33 @@
 /**
-Bootstrap
+Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap dependency)
  */
 .alert-dismissable .close,
 .alert-dismissible .close {
     right: 0;
 }
 
-.navbar {
-    margin-bottom: 0;
-    border: none;
-    border-radius: 0;
-    background: #2c3e50;
-    color: #fff;
-}
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a {
-    color: #fff;
+.nav > li > a {
+    padding: 0;
 }
 
-.table-borderless > tbody > tr > td,
-.table-borderless > tbody > tr > th,
-.table-borderless > tfoot > tr > td,
-.table-borderless > tfoot > tr > th,
-.table-borderless > thead > tr > td,
-.table-borderless > thead > tr > th {
-    border: none;
-}
-
-/**
-130 Words
- */
-.alert {
-    padding: 5px 10px;
-}
-
+/* FOSUserBundle implementation */
 .login,
 .register {
     margin: 50px auto;
     max-width: 200px;
 }
 
-.post {
-    justify-content: center;
+/* Humans Game */
+#nav {
+    margin: 10px;
 }
-
-.post-header {
-    margin-bottom: 20px;
+.nav {
+    margin-top: 20px;
 }
-
-.post-body {
-    font-size: 20px;
+.nav li {
+    display: inline-block;
+    margin-right: 20px;
 }
-
-.post-body textarea {
-    height: 400px;
-    font-size: 20px;
-    resize: none;
-}
-
-.splash.jumbotron {
-    color: #fff;
-    background: #18bc9c;
-}
-
-.wordcount-container {
-    font-size: 24px;
-}
-
-#category-edit form {
-    max-width: 300px;
+#user-nav {
+    float: right;
 }

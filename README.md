@@ -74,3 +74,6 @@ Using minimal emergent system to simulate a farm-like experience might be like:
        - Expect emergent result: human-driven content-organizing expanding 2D map (pixel farm).
          - (title: Pixel Farm)
        - (good misplaced idea: in future ripeness implementation yields: one if unripe, 2 if ripe)
+
+# Notes
+- Firebase - Forget Firebase for now. Just use this for persistence. Users can re-register. This is alpha versions.

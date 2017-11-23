@@ -1,0 +1,16 @@
+{# User Nav #}
+<ul id="user-nav" class="nav">
+
+    {## Authenticated #}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% set user_name = app.user.displayName ? app.user.displayName : app.user.username %}
+
+        <li>logged in as username: {{ user_name }}</li>
+        <li style="float: right"><a href="{{ path('fos_user_security_logout') }}">logout</a></li>
+
+        {## Unauthenticated (User not logged in) #}
+    {% else %}
+        <li><a href="{{ path('fos_user_security_login') }}">Sign In</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+    {% endif %}
+</ul>
