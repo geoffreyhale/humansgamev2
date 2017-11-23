@@ -1,3 +1,4 @@
+/* for dev */
 /**
 Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap dependency)
  */
@@ -6,8 +7,9 @@ Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap depende
     right: 0;
 }
 
-.nav > li > a {
-    padding: 0;
+.navbar-brand {
+    font-size: 48px;
+    line-height: 54px;
 }
 
 /* FOSUserBundle implementation */
@@ -21,6 +23,7 @@ Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap depende
 #nav {
     margin: 10px;
 }
+
 .nav {
     margin-top: 20px;
 }
@@ -28,6 +31,10 @@ Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap depende
     display: inline-block;
     margin-right: 20px;
 }
+
 #user-nav {
     float: right;
+}
+#user-nav > li {
+    vertical-align: top;
 }

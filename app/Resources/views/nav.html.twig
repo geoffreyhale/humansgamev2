@@ -1,8 +1,10 @@
 {# Nav #}
 <div id="nav">
     <div class="row">
-        <a href="{{ path('homepage') }}"><span class="navbar-brand">Humans Game</span></a>
+        <a href="{{ path('homepage') }}"><span class="navbar-brand text-muted">Humans Game</span></a>
         {% include 'user-nav.html.twig' %}
     </div>
-    {% include 'human-nav.html.twig' %}
+    <div class="row">
+        {% include 'human-nav.html.twig' %}
+    </div>
 </div>

@@ -1,8 +1,13 @@
 {% extends '::base.html.twig' %}
 
+{% set user_name = app.user.displayName ? app.user.displayName : app.user.username %}
+
 {% block content %}
     <pre>
-        # Humans Game
-        - User (logged in) (you are: @todo)
+        - [x] Register (/)
+        - [x] Userify (/) (logged in as {{ user_name }})
+        - [ ] <a>Humanify</a> ( )
     </pre>
+
+    <code>Coming soon...</code>
 {% endblock %}
