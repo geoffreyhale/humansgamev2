@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% include 'HumansGameBundle:forms:human_create_form.html.twig' %}
+        {% include 'HumansGameBundle:instructions:human_create.html.twig' %}
+    {% endif %}
+{% endblock %}

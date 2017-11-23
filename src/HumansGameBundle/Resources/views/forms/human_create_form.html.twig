@@ -1,0 +1,16 @@
+{% if human_create_form is defined %}
+    <div id="human-create" class="panel panel-default">
+        <div class="panel-heading">Human</div>
+        <div class="panel-body">
+            {{ form_start(human_create_form, {'attr': {'class': 'form'}}) }}
+            <div class="form-group">
+                {{ form_label(human_create_form.name) }}
+                {{ form_widget(human_create_form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(human_create_form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+            {{ form_end(human_create_form) }}
+        </div>
+    </div>
+{% endif %}
