@@ -17,10 +17,10 @@ class DefaultController extends Controller
     public function indexAction()
     {
         if (null == $this->getUser()) {
-            return $this->render('OneThirtyWordsBundle:Home:splash.html.twig');
+            return $this->render('OneThirtyWordsBundle::pre_user.html.twig');
         }
 
-        return $this->render('OneThirtyWordsBundle:Home:index.html.twig', array(
+        return $this->render('OneThirtyWordsBundle::index.html.twig', array(
             'user' => $this->getUser(),
         ));
     }
