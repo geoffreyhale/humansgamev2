@@ -3,11 +3,20 @@
 {% set user_name = app.user.displayName ? app.user.displayName : app.user.username %}
 
 {% block content %}
-    <pre>
-        - [x] Register (/)
-        - [x] Userify (/) (logged in as {{ user_name }})
-        - [ ] <a>Humanify</a> ( )
-    </pre>
+<pre>
+    Hello, <strong>{{ user_name }}</strong>!
+
+    @todo:
+    1. [x] Userify (logged in as {{ user_name }})
+    2. [ ] <a>Humanify...</a>
+
+    TLDR:
+    Click <a>Humanify...</a>
+
+    TMI:
+    Looks like you need to Humanify!
+    Click the Humanify button to continue!
+</pre>
 
     <code>Coming soon...</code>
 {% endblock %}

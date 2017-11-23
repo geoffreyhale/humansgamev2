@@ -6,7 +6,7 @@
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {% set user_name = app.user.displayName ? app.user.displayName : app.user.username %}
 
-        <li><i class="fa fa-user-secret"></i> User logged in as username: {{ user_name }}</li>
+        <li><i class="fa fa-user-secret"></i> User logged in as username: <strong>{{ user_name }}</strong></li>
         <li>
             <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger">
                 Unuserify
