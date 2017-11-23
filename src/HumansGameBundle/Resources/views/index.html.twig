@@ -1,22 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-<pre>
-    Hello, <strong>{{ app.user.username }}</strong>!
-
-    @todo:
-    1. [x] Userify (logged in as {{ app.user.username }})
-    2. [ ] <a>Humanify...</a>
-
-    TLDR:
-    Click <a>Humanify...</a>
-
-    TMI:
-    Looks like you need to Humanify!
-    Click the Humanify button to continue!
-</pre>
-
-    <div><a class="btn btn-primary">Humanify</a></div>
-
-    <code>Coming soon...</code>
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% include 'HumansGameBundle:instructions:pre_user.html.twig' %}
+    {% else %}
+        {% include 'HumansGameBundle::user_humans.html.twig' %}
+    {% endif %}
 {% endblock %}

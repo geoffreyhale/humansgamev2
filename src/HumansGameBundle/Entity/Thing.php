@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Table(name="thing")
- * @ORM\Entity(repositoryClass="HumansGameBundle\Repository\PostRepository")
- *
+ * @ORM\Entity
  */
 class Thing
 {

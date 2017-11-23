@@ -18,7 +18,7 @@
         {% if null is not null %}
             {#<i class="fa fa-user"></i> Human's name: {{ app.user.human.name }}</li>#}
         {% else %}
-            <li><a class="btn btn-primary">Humanify</a></li>
+            <li><a href="{{ path('human_create') }}" class="btn btn-primary">Humanify</a></li>
         {% endif %}
     </ul>
 

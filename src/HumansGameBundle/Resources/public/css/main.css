@@ -14,7 +14,8 @@ Bootstrap (fixes, adjustments, alternates, eventual removal of bootstrap depende
 
 /* FOSUserBundle implementation */
 .login,
-.register {
+.register,
+#human-create {
     margin: 50px auto;
     max-width: 200px;
 }

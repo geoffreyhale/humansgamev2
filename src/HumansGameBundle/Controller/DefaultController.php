@@ -2,11 +2,12 @@
 
 namespace HumansGameBundle\Controller;
 
+use HumansGameBundle\Entity\Human;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -16,8 +17,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        if (null == $this->getUser()) {
-            return $this->render('HumansGameBundle::pre_user.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        if ($user) {
+            //@todo (hydration) there must be a better way
+            foreach ($user->getHumans() as $human) { }
         }
 
         return $this->render('HumansGameBundle::index.html.twig', array(
@@ -26,11 +31,33 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test", name="test")
+     * @Route("human/create", name="human_create")
      */
-    public function testAction()
+    public function createHumanAction(Request $request)
     {
-        dump("test");
-        die;
+        $em = $this->getDoctrine()->getManager();
+
+        $human = new Human();
+
+        $form = $this->createFormBuilder($human)
+            ->add('name', TextType::class)
+            ->add('submit', SubmitType::class, array('label' => 'Create'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $human = $form->getData();
+            $human->setUser($this->getUser());
+            $em->persist($human);
+            $em->flush();
+
+            return $this->forward('HumansGameBundle:Default:index');
+        }
+
+        return $this->render('HumansGameBundle::index.html.twig', array(
+            'form' => $form->createView(),
+            'human' => $human,
+        ));
     }
 }

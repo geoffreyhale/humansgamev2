@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="human")
- * @ORM\Entity(repositoryClass="HumansGameBundle\Repository\CategoryRepository")
+ * @ORM\Entity
  */
 class Human
 {
@@ -23,7 +23,7 @@ class Human
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
