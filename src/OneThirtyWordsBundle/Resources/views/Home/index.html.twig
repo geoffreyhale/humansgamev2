@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% set user_name = app.user.displayName ? app.user.displayName : app.user.username %}
+{% set user_name = app.user.username %}
 
 {% block content %}
 <pre>

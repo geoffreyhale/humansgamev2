@@ -6,12 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
- *
- * @ORM\Table(name="category")
+ * @ORM\Table(name="human")
  * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\CategoryRepository")
  */
-class Category
+class Human
 {
     /**
      * @var int
@@ -30,26 +28,20 @@ class Category
     private $name;
 
     /**
-     * @var Post[]
+     * @var Thing[]
      *
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Thing", mappedBy="human")
      * @ORM\OrderBy({"date" = "DESC"})
      */
-    private $posts;
+    private $things;
 
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="humans")
      */
     private $user;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="hide", type="boolean", options={"default" : 0})
-     */
-    private $hide = false;
 
     /**
      * Constructor
@@ -58,7 +50,6 @@ class Category
     {
         $this->posts = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -95,37 +86,37 @@ class Category
     }
 
     /**
-     * Add post
+     * Add thing
      *
-     * @param Post $post
+     * @param Thing $thing
      *
      * @return self
      */
-    public function addPost(Post $post)
+    public function addPost(Thing $thing)
     {
-        $this->posts[] = $post;
+        $this->things[] = $thing;
 
         return $this;
     }
 
     /**
-     * Remove post
+     * Remove thing
      *
-     * @param Post $post
+     * @param Thing $thing
      */
-    public function removePost(Post $post)
+    public function removePost(Thing $thing)
     {
-        $this->posts->removeElement($post);
+        $this->things->removeElement($thing);
     }
 
     /**
-     * Get posts
+     * Get things
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPosts()
+    public function getThings()
     {
-        return $this->posts;
+        return $this->things;
     }
 
     /**
@@ -150,26 +141,6 @@ class Category
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHide()
-    {
-        return $this->hide;
-    }
-
-    /**
-     * @param bool $hide
-     *
-     * @return self
-     */
-    public function setHide($hide)
-    {
-        $this->hide = $hide;
-
-        return $this;
     }
 }
 

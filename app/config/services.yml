@@ -7,14 +7,3 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
-
-    one_thirty_service:
-        class: OneThirtyWordsBundle\Service\OneThirtyService
-        arguments:
-          - "@doctrine.orm.default_entity_manager"
-
-    user_service:
-        class: OneThirtyWordsBundle\Service\UserService
-        arguments:
-          - "@doctrine.orm.default_entity_manager"
-          - "@security.token_storage"

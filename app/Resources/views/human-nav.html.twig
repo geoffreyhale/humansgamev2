@@ -3,27 +3,20 @@
 {## User Authenticated #}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-    {# Human Nav Left #}
+    {# Left #}
     <ul id="human-nav" class="nav" style="float: left;">
-
-        {# Human selected #}
-        {#{% if app.user.human is not null %}#}
         {% if null is not null %}
+        {#{% if app.human is not null %}#}
             <li>Human go to:</li>
             <li><a>Pixel Farm (coming soon)</a></li>
         {% endif %}
     </ul>
 
-    {# Human Nav  Right#}
+    {# Right #}
     <ul id="human-nav" class="nav" style="float: right;">
-
-        {## Authenticated #}
-        {# Human selected #}
-        {#{% if app.user.human is not null %}#}
+        {#{% if app.human is not null %}#}
         {% if null is not null %}
             {#<i class="fa fa-user"></i> Human's name: {{ app.user.human.name }}</li>#}
-
-        {# Human unselected #}
         {% else %}
             <li><a class="btn btn-primary">Humanify</a></li>
         {% endif %}

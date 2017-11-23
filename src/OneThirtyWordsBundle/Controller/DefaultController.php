@@ -2,8 +2,6 @@
 
 namespace OneThirtyWordsBundle\Controller;
 
-use OneThirtyWordsBundle\Entity\Category;
-use OneThirtyWordsBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,26 +20,7 @@ class DefaultController extends Controller
             return $this->render('OneThirtyWordsBundle:Home:splash.html.twig');
         }
 
-        $em = $this->getDoctrine()->getManager();
-
-        $posts = $em->getRepository(Post::class)->findBy([
-            'date' => new \DateTime('today'),
-            'user' => $this->getUser(),
-        ]);
-
-        $categories = $em->getRepository(Category::class)->findBy([
-            'user' => $this->getUser(),
-            'hide' => false,
-        ]);
-
-        uasort($categories, function ($c1, $c2) {
-            if ($c2->getName() == $c1->getName()) return 0;
-            return $c2->getName() > $c1->getName() ? -1 : 1;
-        });
-
         return $this->render('OneThirtyWordsBundle:Home:index.html.twig', array(
-            'categories' => $categories,
-            'posts' => $posts,
             'user' => $this->getUser(),
         ));
     }
@@ -51,7 +30,7 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        $this->get('one_thirty_service')->getUsersWith130WordsCounts($this->getUser());
+        dump("test");
         die;
     }
 }

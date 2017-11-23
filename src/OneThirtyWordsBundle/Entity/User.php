@@ -7,7 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
@@ -19,18 +19,11 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var Category[]
+     * @var Human[]
      *
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Human", mappedBy="user")
      */
-    private $categories;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="display_name", type="string", length=255, nullable=true)
-     */
-    private $displayName;
+    private $humans;
 
     /**
      * @var bool
@@ -39,6 +32,7 @@ class User extends BaseUser
      */
     private $emailReminders = false;
 
+
     public function __construct()
     {
         parent::__construct();
@@ -46,57 +40,37 @@ class User extends BaseUser
     }
 
     /**
-     * Add category
+     * Add human
      *
-     * @param Category $category
+     * @param Human $human
      *
-     * @return User
+     * @return Human
      */
-    public function addCategory(Category $category)
+    public function addHuman(Human $human)
     {
-        $this->categories[] = $category;
+        $this->humans[] = $human;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Remove human
      *
-     * @param Category $category
+     * @param Human $human
      */
-    public function removeCategory(Category $category)
+    public function removeHuman(Human $human)
     {
-        $this->categories->removeElement($category);
+        $this->humans->removeElement($human);
     }
 
     /**
-     * Get categories
+     * Get humans
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategories()
+    public function getHumans()
     {
-        return $this->categories;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDisplayName()
-    {
-        return $this->displayName;
-    }
-
-    /**
-     * @param string $displayName
-     *
-     * @return User
-     */
-    public function setDisplayName($displayName)
-    {
-        $this->displayName = $displayName;
-
-        return $this;
+        return $this->humans;
     }
 
     /**
@@ -118,6 +92,4 @@ class User extends BaseUser
 
         return $this;
     }
-
-
 }

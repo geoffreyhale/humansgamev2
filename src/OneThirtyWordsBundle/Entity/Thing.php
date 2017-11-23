@@ -6,13 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
- * Post
- *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="thing")
  * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\PostRepository")
  *
  */
-class Post
+class Thing
 {
     /**
      * @var int
@@ -26,16 +24,16 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="body", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $body;
+    private $description;
 
     /**
-     * @var Category
+     * @var Human
      *
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="Human", inversedBy="things")
      */
-    private $category;
+    private $human;
 
     /**
      * @var \DateTime
@@ -43,15 +41,6 @@ class Post
      * @ORM\Column(name="date", type="date")
      */
     private $date;
-
-
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -64,27 +53,27 @@ class Post
     }
 
     /**
-     * Set body
+     * Set description
      *
-     * @param string $body
+     * @param string $description
      *
      * @return Post
      */
-    public function setBody($body)
+    public function setBody($description)
     {
-        $this->body = $body;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get body
+     * Get description
      *
      * @return string
      */
     public function getBody()
     {
-        return $this->body;
+        return $this->description;
     }
 
     /**
@@ -102,27 +91,27 @@ class Post
     }
 
     /**
-     * Set category
+     * Set human
      *
-     * @param Category $category
+     * @param Human $human
      *
      * @return Post
      */
-    public function setCategory(Category $category)
+    public function setHuman(Human $human)
     {
-        $this->category = $category;
+        $this->human = $human;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get human
      *
-     * @return Category
+     * @return Human
      */
-    public function getCategory()
+    public function getHuman()
     {
-        return $this->category;
+        return $this->human;
     }
 
     /**
@@ -133,30 +122,6 @@ class Post
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Kingdom
-     */
-    public function setUser(User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }
 

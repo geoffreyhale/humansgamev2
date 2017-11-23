@@ -41,9 +41,7 @@ twig:
     strict_variables: '%kernel.debug%'
 
     # https://symfony.com/doc/current/templating/global_variables.html
-    globals:
-      user_service: '@user_service'
-      one_thirty_service: '@one_thirty_service'
+    globals: ~
 
 # Doctrine Configuration
 doctrine:
