@@ -1,13 +1,11 @@
 {% extends '::base.html.twig' %}
 
-{% set user_name = app.user.username %}
-
 {% block content %}
 <pre>
-    Hello, <strong>{{ user_name }}</strong>!
+    Hello, <strong>{{ app.user.username }}</strong>!
 
     @todo:
-    1. [x] Userify (logged in as {{ user_name }})
+    1. [x] Userify (logged in as {{ app.user.username }})
     2. [ ] <a>Humanify...</a>
 
     TLDR:
@@ -17,6 +15,8 @@
     Looks like you need to Humanify!
     Click the Humanify button to continue!
 </pre>
+
+    <div><a class="btn btn-primary">Humanify</a></div>
 
     <code>Coming soon...</code>
 {% endblock %}
