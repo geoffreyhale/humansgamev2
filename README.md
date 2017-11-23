@@ -17,13 +17,22 @@ bin/console cache:clear --env=prod
 bin/console server:start
 ```
 
+## To Do
+
+**Reqired:**
+
+- [x] ~~Userify~~
+- [ ] Humanify
+
+**Optional:**
+- [ ] Pixel Farm
+- [ ] Letter
+
 ## Blog
 
 ### Existential Checklist
 
-**TMI:**
-
-Started humans.game v2 by cloning 130words which includes (User-)identity, persistence (Doctrine, sql).
+**TMI:** Started humans.game v2 by cloning 130words which includes (User-)identity, persistence (Doctrine, sql).
 
 **TLDR:**
 
@@ -53,9 +62,7 @@ Build systems that yield emergent value.
 
 ##### Farming
 
-**TMI:**
-
-Farming := producing sustenance supports (/ is req by/for) "persistence"/User-existence.
+**TMI:** Farming := producing sustenance supports (/ is req by/for) "persistence"/User-existence.
 
 Using minimal emergent system to simulate a farm-like experience might be like:
 
@@ -74,6 +81,27 @@ Using minimal emergent system to simulate a farm-like experience might be like:
        - Expect emergent result: human-driven content-organizing expanding 2D map (pixel farm).
          - (title: Pixel Farm)
        - (good misplaced idea: in future ripeness implementation yields: one if unripe, 2 if ripe)
+
+##### Record Keeping
+
+**TMI:** *Record Keeping IRL is an example of another Emergent Value System (EVS).  It is both the result of an EVS (humanity IRL) as well as itself an EVS (resulting in text like this, or code like this from which the Humans.Game emerges).  **TMI:** First appearance of "Humans.Game" (title case, periodized).*
+
+###### Letter
+
+A minimal emergent system of human-emergent record keeping shall be as:
+
+- Persistent (obviously, inherently)
+- Universal (only one total documents of this type exist and it is exposed to all humans).
+- Gamified (e.g. iff you didn't add previous character: allow human to append only one character)
+  - later versions: allow purchase of adding a character
+     - in-game money <--> (or) $ IRL (<--> any **transactable value** (e.g. crypto-currency (e.g. Bitcoin, **Ethereum**), goods, services, etc))
+        - (an original conceptual point of core value for humans.game [https://humans.game] was as optimized universal extensible value exchange system (universal **market**), but that ultimately led me to follow inspiration of **emergence**) 
+          - (another case in point of (digressive) record keeping) ;)
+- Name the game: Letter
+    - add letter(s)
+    - Letter emerges (like a letter consisting of multiple words/sentences)
+        - Embaracements of language, e.g.
+            - letter(s) < ~~word < sentence < paragraph < body < ~~letter (doh!)~~ Letter
 
 # Notes
 - Firebase - Forget Firebase for now. Just use this for persistence. Users can re-register. This is alpha versions.
