@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@OneThirtyWordsBundle/Resources/config/services.yml" }
+    - { resource: "@HumansGameBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -76,7 +76,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: OneThirtyWordsBundle\Entity\User
+    user_class: HumansGameBundle\Entity\User
     from_email:
         address: mail@130words.com
         sender_name: mail@130words.com

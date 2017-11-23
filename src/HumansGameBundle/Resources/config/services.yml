@@ -1,4 +1,4 @@
 services:
-#    onethirtywords.example:
-#        class: OneThirtyWordsBundle\Example
+#    humansgame.example:
+#        class: HumansGameBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

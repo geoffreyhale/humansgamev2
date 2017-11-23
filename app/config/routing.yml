@@ -1,5 +1,5 @@
-onethirtywords:
-    resource: "@OneThirtyWordsBundle/Controller/"
+humansgame:
+    resource: "@HumansGameBundle/Controller/"
     type:     annotation
     prefix:   /
 

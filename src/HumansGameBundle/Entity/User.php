@@ -1,5 +1,5 @@
 <?php
-namespace OneThirtyWordsBundle\Entity;
+namespace HumansGameBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

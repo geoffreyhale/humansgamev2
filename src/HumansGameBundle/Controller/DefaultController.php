@@ -1,6 +1,6 @@
 <?php
 
-namespace OneThirtyWordsBundle\Controller;
+namespace HumansGameBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,10 +17,10 @@ class DefaultController extends Controller
     public function indexAction()
     {
         if (null == $this->getUser()) {
-            return $this->render('OneThirtyWordsBundle::pre_user.html.twig');
+            return $this->render('HumansGameBundle::pre_user.html.twig');
         }
 
-        return $this->render('OneThirtyWordsBundle::index.html.twig', array(
+        return $this->render('HumansGameBundle::index.html.twig', array(
             'user' => $this->getUser(),
         ));
     }

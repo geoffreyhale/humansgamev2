@@ -1,8 +1,8 @@
 <?php
 
-namespace OneThirtyWordsBundle\Command;
+namespace HumansGameBundle\Command;
 
-use OneThirtyWordsBundle\Entity\User;
+use HumansGameBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,7 +39,7 @@ class SendEmailCommand extends ContainerAwareCommand
                     ->setTo($to)
                     ->setBody(
                         $this->getContainer()->get('templating')->render(
-                            'OneThirtyWordsBundle:Email:reminder.html.twig',
+                            'HumansGameBundle:Email:reminder.html.twig',
                             array('name' => $displayName)
                         ),
                         'text/html'

@@ -1,13 +1,13 @@
 <?php
 
-namespace OneThirtyWordsBundle\Entity;
+namespace HumansGameBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="human")
- * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="HumansGameBundle\Repository\CategoryRepository")
  */
 class Human
 {

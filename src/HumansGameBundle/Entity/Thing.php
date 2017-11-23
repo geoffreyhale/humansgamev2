@@ -1,13 +1,13 @@
 <?php
 
-namespace OneThirtyWordsBundle\Entity;
+namespace HumansGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Table(name="thing")
- * @ORM\Entity(repositoryClass="OneThirtyWordsBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="HumansGameBundle\Repository\PostRepository")
  *
  */
 class Thing
