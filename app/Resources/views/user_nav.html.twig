@@ -2,7 +2,7 @@
 
 <ul id="user-nav" class="nav">
 
-    {## Authenticated #}
+    {# Authenticated #}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <li><i class="fa fa-user-secret"></i> User logged in as username: <strong>{{ app.user.username }}</strong></li>
         <li>
@@ -12,9 +12,8 @@
             {#<span>userified count: 1,234</span>#}
         </li>
 
-        {## Unauthenticated (User not logged in) #}
+    {# Unauthenticated (User not logged in) #}
     {% else %}
         <li><a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">Userify</a></li>
-        {#<li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>#}
     {% endif %}
 </ul>

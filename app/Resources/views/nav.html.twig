@@ -1,10 +1,19 @@
 {# Nav #}
-<div id="nav">
+<div id="nav" class="clearfix">
     <div class="row">
-        <a href="{{ path('homepage') }}"><span class="navbar-brand text-muted">Humans Game</span></a>
-        {% include 'user-nav.html.twig' %}
+        <div class="col-xs-12">
+            <a href="{{ path('homepage') }}"><span class="navbar-brand text-muted">Humans Game</span></a>
+            {% include 'user_nav.html.twig' %}
+        </div>
     </div>
     <div class="row">
-        {% include 'human-nav.html.twig' %}
+        <div class="col-xs-12">
+            {% include 'humans_nav.html.twig' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {% include 'human_nav.html.twig' %}
+        </div>
     </div>
 </div>
