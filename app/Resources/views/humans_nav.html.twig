@@ -1,20 +1,27 @@
-{# Humans Nav #}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-    {% if app.user.humans is not empty %}
+    {% if app.session.get('human') is null and app.user.humans is not empty %}
         <ul class="nav" style="float: left;">
             {% for human in app.user.humans %}
-                <li><a href="{{ path('human_being', {'id' : human.id}) }}" class="btn btn-default">{{ human.name }}</a></li>
+                <li><a href="{{ path('human_being', {'id' : human.id}) }}" class="btn btn-default">{{ human.name }}</a>
+                </li>
             {% endfor %}
+            {% if app.session.get('human') is null %}
+                <li><a href="{{ path('human_create') }}" class="btn btn-primary">New Human</a></li>
+            {% endif %}
         </ul>
     {% endif %}
 
     {# Right #}
     <ul class="nav" style="float: right;">
         {% if app.session.get('human') is not null %}
-            <li><i class="fa fa-user"></i> Human's name: <strong>{{ app.session.get('human').name }}</strong></li>
-        {% else %}
-            <li><a href="{{ path('human_create') }}" class="btn btn-primary">Humanify</a></li>
+            {% set human = app.session.get('human') %}
+            <li>
+                {#<a href="{{ path('human', {'id' : human.id}) }}">#}
+                    <i class="fa fa-user"></i> <strong>{{ human.name }}</strong>
+                {#</a>#}
+            </li>
+            <li><a href="{{ path('human_unset') }}" style="padding: 0">Change</a></li>
         {% endif %}
     </ul>
 

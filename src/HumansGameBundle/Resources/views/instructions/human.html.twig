@@ -1,0 +1,7 @@
+{% set human = app.session.get('human') %}
+{% if human is not empty %}
+<pre>
+You are a Human named <strong>{{ human.name }}</strong>.
+Go to the <a href="{{ path('farm') }}">Farm</a> and get Seeds.
+</pre>
+{% endif %}

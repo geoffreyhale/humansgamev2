@@ -37,6 +37,16 @@ class HumanController extends Controller
     }
 
     /**
+     * @Route("/unset", name="human_unset")
+     */
+    public function humanUnsetAction()
+    {
+        $this->get('session')->set('human', null);
+
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
      * @Route("/{id}", requirements={"id" = "\d+"}, name="human")
      * @Method({"GET"})
      */

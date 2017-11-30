@@ -1,13 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user is not null %}
-        <h1>Farm</h1>
-        <p>Welcome to the farm!</p>
-        <p>Click the button:</p>
-        <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
-        <div>
-            <strong>Seeds:</strong> {{ (seeds is null) ? "None" : seeds.quantity }}
+    {% if app.user is not null %}
+        <div style="margin-left: 15px;">
+            <h1><i class="fa fa-home" aria-hidden="true"></i> Farm</h1>
+            <p>Welcome to the farm!</p>
+            <p>Click the button:</p>
+            <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
+            <div style="margin-top: 10px;">
+                <strong>Seeds:</strong> <span class="badge">{{ (seeds is null) ? "None" : seeds.quantity }}</span>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

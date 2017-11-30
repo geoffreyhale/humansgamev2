@@ -7,14 +7,8 @@
         {% if app.user.humans is empty %}
             {% include 'HumansGameBundle:instructions:pre_humans.html.twig' %}
             {% include 'HumansGameBundle:forms:human_create_form.html.twig' %}
-        {% else %}
-            {% set human = app.session.get('human') %}
-            {% if human is not empty %}
-
-                <pre>You are a Human named <strong>{{ human.name }}</strong>.
-
-You can link to your human here: <a href="{{ path('human', {'id' : human.id}) }}">{{ path('human', {'id' : app.session.get('human').id}) }}</a></pre>
-            {% endif %}
+        {% elseif app.session.get('human') is not empty %}
+            {% include 'HumansGameBundle:instructions:human.html.twig' %}
         {% endif %}
     {% endif %}
 {% endblock %}
