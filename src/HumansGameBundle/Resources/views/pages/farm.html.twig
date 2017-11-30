@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user is not null %}
+        <h1>Farm</h1>
+        <p>Welcome to the farm!</p>
+        <p>Click the button:</p>
+        <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
+        {% for thing in human.things %}
+            <div class="badge">{{ thing.name }}</div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

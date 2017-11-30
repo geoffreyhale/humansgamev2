@@ -1,11 +1,8 @@
-{# Human Nav #}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-    {# Left #}
     <ul id="human-nav" class="nav" style="float: left;">
         {% if app.session.get('human') is not null %}
             <li>Human go to:</li>
-            <li><a>Pixel Farm (coming soon)</a></li>
+            <li><a href="{{ path('farm') }}" class="btn btn-primary">Farm</a></li>
         {% endif %}
     </ul>
 {% endif %}

@@ -1,16 +1,11 @@
 # Humans Game
 
-Humans Game is an emergent value existence-simulation.
+Humans Game is a game about humans.  It is an emergent world experiment.  It explores minimal foundations for maximum emergent value.
 
-## Initial Setup
+## Setup
 
 ```
 git clone <thisRepository>
-```
-
-## Deploy
-
-```
 composer install
 bin/console doctrine:schema:update --force
 bin/console cache:clear --env=prod
@@ -18,10 +13,8 @@ bin/console server:start
 ```
 
 ## To Do
-This section moved to `TODO.md`.
-
-## Blog
-This section moved to `BLOG.md`.
-
-# Notes
-- Firebase - Forget Firebase for now. Just use this for persistence. Users can re-register. This is alpha versions.
+- [x] User Registration
+- [x] Human Creation
+- [ ] Pixel Farm
+- [ ] Letter Game
+- [ ] Public API

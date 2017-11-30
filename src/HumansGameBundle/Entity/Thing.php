@@ -35,11 +35,11 @@ class Thing
     private $human;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="name", type="text", nullable=false)
      */
-    private $date;
+    private $name;
 
     /**
      * Get id
@@ -56,7 +56,7 @@ class Thing
      *
      * @param string $description
      *
-     * @return Post
+     * @return Thing
      */
     public function setBody($description)
     {
@@ -70,23 +70,9 @@ class Thing
      *
      * @return string
      */
-    public function getBody()
+    public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Post
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
     }
 
     /**
@@ -94,7 +80,7 @@ class Thing
      *
      * @param Human $human
      *
-     * @return Post
+     * @return Thing
      */
     public function setHuman(Human $human)
     {
@@ -114,13 +100,23 @@ class Thing
     }
 
     /**
-     * Get date
-     *
-     * @return \DateTime
+     * @return mixed
      */
-    public function getDate()
+    public function getName()
     {
-        return $this->date;
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     *
+     * @return Thing
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }
 

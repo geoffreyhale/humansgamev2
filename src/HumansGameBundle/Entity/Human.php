@@ -30,8 +30,8 @@ class Human
     /**
      * @var Thing[]
      *
-     * @ORM\OneToMany(targetEntity="Thing", mappedBy="human")
-     * @ORM\OrderBy({"date" = "DESC"})
+     * @ORM\OneToMany(targetEntity="Thing", mappedBy="human", cascade={"persist"})
+     * @ORM\OrderBy({"name" = "DESC"})
      */
     private $things;
 
@@ -92,8 +92,9 @@ class Human
      *
      * @return self
      */
-    public function addPost(Thing $thing)
+    public function addThing(Thing $thing)
     {
+        $thing->setHuman($this);
         $this->things[] = $thing;
 
         return $this;
@@ -104,7 +105,7 @@ class Human
      *
      * @param Thing $thing
      */
-    public function removePost(Thing $thing)
+    public function removeThing(Thing $thing)
     {
         $this->things->removeElement($thing);
     }
