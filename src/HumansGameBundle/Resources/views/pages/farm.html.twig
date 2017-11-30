@@ -8,7 +8,7 @@
             <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
             <div style="margin-top: 10px;">
                 <strong>Seeds:</strong> {{ (seeds is null) ? "None" : seeds.quantity }}<br>
-                {% for i in 0..seeds.quantity  %}
+                {% for i in 1..seeds.quantity  %}
                     <span class="badge">Seed</span>
                 {% endfor %}
             </div>
