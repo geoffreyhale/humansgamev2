@@ -8,7 +8,10 @@
             <p>Click the button:</p>
             <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
             <div style="margin-top: 10px;">
-                <strong>Seeds:</strong> <span class="badge">{{ (seeds is null) ? "None" : seeds.quantity }}</span>
+                <strong>Seeds:</strong> {{ (seeds is null) ? "None" : seeds.quantity }}<br>
+                {% for i in 0..seeds.quantity  %}
+                    <span class="badge">Seed</span>
+                {% endfor %}
             </div>
         </div>
     {% endif %}
