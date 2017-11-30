@@ -1,16 +1,16 @@
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-    {% if app.session.get('human') is null and app.user.humans is not empty %}
-        <ul class="nav" style="float: left;">
+    <ul class="nav" style="float: left;">
+        {% if app.session.get('human') is null and app.user.humans is not empty %}
             {% for human in app.user.humans %}
                 <li><a href="{{ path('human_being', {'id' : human.id}) }}" class="btn btn-default">{{ human.name }}</a>
                 </li>
             {% endfor %}
-            {% if app.session.get('human') is null %}
-                <li><a href="{{ path('human_create') }}" class="btn btn-primary">New Human</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
+        {% endif %}
+        {% if app.session.get('human') is null %}
+            <li><a href="{{ path('human_create') }}" class="btn btn-primary">New Human</a></li>
+        {% endif %}
+    </ul>
 
     {# Right #}
     <ul class="nav" style="float: right;">
