@@ -9,6 +9,22 @@
             {% include 'HumansGameBundle:forms:human_create_form.html.twig' %}
         {% elseif app.session.get('human') is not empty %}
             {% include 'HumansGameBundle:instructions:human.html.twig' %}
+            {% if humans is not empty %}
+                <table class="table table-bordered table-responsive" style="width: inherit;">
+                    <thead>
+                    <tr>
+                        <th>Human</th>
+                        <th>Seeds</th>
+                    </tr>
+                    </thead>
+                    {% for human in humans %}
+                        <tr>
+                            <td>{{ human.name }}</td>
+                            <td>{{ human.seeds }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
         {% endif %}
     {% endif %}
 {% endblock %}

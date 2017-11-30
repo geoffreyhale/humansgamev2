@@ -2,14 +2,13 @@
 
 namespace HumansGameBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * HumanThing
  *
  * @ORM\Table(name="human_thing")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="HumansGameBundle\Repository\HumanThingRepository")
  */
 class HumanThing
 {

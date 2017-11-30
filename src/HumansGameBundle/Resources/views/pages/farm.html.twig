@@ -5,7 +5,6 @@
         <div style="margin-left: 15px;">
             <h1><i class="fa fa-home" aria-hidden="true"></i> Farm</h1>
             <p>Welcome to the farm!</p>
-            <p>Click the button:</p>
             <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
             <div style="margin-top: 10px;">
                 <strong>Seeds:</strong> {{ (seeds is null) ? "None" : seeds.quantity }}<br>
