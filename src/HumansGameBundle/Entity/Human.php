@@ -28,12 +28,11 @@ class Human
     private $name;
 
     /**
-     * @var Thing[]
+     * @var HumanThing[]
      *
-     * @ORM\OneToMany(targetEntity="Thing", mappedBy="human", cascade={"persist"})
-     * @ORM\OrderBy({"name" = "DESC"})
+     * @ORM\OneToMany(targetEntity="HumanThing", mappedBy="human", cascade={"persist"})
      */
-    private $things;
+    private $thing;
 
     /**
      * @var User
@@ -88,13 +87,12 @@ class Human
     /**
      * Add thing
      *
-     * @param Thing $thing
+     * @param HumanThing $thing
      *
      * @return self
      */
-    public function addThing(Thing $thing)
+    public function addThing(HumanThing $thing)
     {
-        $thing->setHuman($this);
         $this->things[] = $thing;
 
         return $this;
@@ -103,11 +101,11 @@ class Human
     /**
      * Remove thing
      *
-     * @param Thing $thing
+     * @param HumanThing $thing
      */
-    public function removeThing(Thing $thing)
+    public function removeThing(HumanThing $thing)
     {
-        $this->things->removeElement($thing);
+        $this->thing->removeElement($thing);
     }
 
     /**
@@ -117,7 +115,7 @@ class Human
      */
     public function getThings()
     {
-        return $this->things;
+        return $this->thing;
     }
 
     /**

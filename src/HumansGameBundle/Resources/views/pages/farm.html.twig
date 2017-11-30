@@ -6,8 +6,8 @@
         <p>Welcome to the farm!</p>
         <p>Click the button:</p>
         <a href="{{ path('getSeeds') }}" class="btn btn-primary">Get Seeds</a>
-        {% for thing in human.things %}
-            <div class="badge">{{ thing.name }}</div>
-        {% endfor %}
+        <div>
+            <strong>Seeds:</strong> {{ (seeds is null) ? "None" : seeds.quantity }}
+        </div>
     {% endif %}
 {% endblock %}

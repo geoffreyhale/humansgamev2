@@ -21,23 +21,16 @@ class Thing
     private $id;
 
     /**
-     * @var string
+     * @var HumanThing
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-
-    /**
-     * @var Human
-     *
-     * @ORM\ManyToOne(targetEntity="Human", inversedBy="things")
+     * @ORM\OneToMany(targetEntity="HumanThing", mappedBy="thing")
      */
     private $human;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="text", nullable=false)
+     * @ORM\Column(name="name", type="string", length=191, nullable=false, unique=true)
      */
     private $name;
 
@@ -63,16 +56,6 @@ class Thing
         $this->description = $description;
 
         return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**

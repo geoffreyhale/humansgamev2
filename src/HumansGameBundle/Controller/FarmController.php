@@ -3,6 +3,7 @@
 namespace HumansGameBundle\Controller;
 
 use HumansGameBundle\Entity\Human;
+use HumansGameBundle\Entity\HumanThing;
 use HumansGameBundle\Entity\Thing;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,8 +30,12 @@ class FarmController extends Controller
             throw new \Exception("USER ACCESS DENIED: You cannot Be this Human. This is not your Human to Be. Unless you want to make them an offer ($$)?");
         }
 
+        $seed = $em->getRepository(Thing::class)->findOneBy(['name' => 'seed']);
+        $seeds = $em->getRepository(HumanThing::class)->findOneBy(['human' => $human, 'thing' => $seed]);
+
         return $this->render('HumansGameBundle:pages:farm.html.twig', array(
-            'human' => $human
+            'human' => $human,
+            'seeds' => $seeds,
         ));
     }
 
@@ -49,7 +54,23 @@ class FarmController extends Controller
             throw new \Exception("USER ACCESS DENIED: You cannot Be this Human. This is not your Human to Be. Unless you want to make them an offer ($$)?");
         }
 
-        $human->addThing((new Thing())->setName('seed'));
+        $seed = $em->getRepository(Thing::class)->findOneBy(['name' => 'seed']);
+
+        if (!$seed) {
+            $seed = (new Thing())->setName('seed');
+        }
+
+        $humanThing = $em->getRepository(HumanThing::class)->findOneBy(['human' => $human->getId(), 'thing' => $seed->getId()]);
+
+        if (!$humanThing) {
+            $humanThing = (new HumanThing())->setHuman($human)->setThing($seed)->setQuantity(1);
+        } else {
+            $humanThing->addQuantity(1);
+        }
+
+        $human->addThing($humanThing);
+        $em->persist($seed);
+        $em->persist($humanThing);
         $em->persist($human);
         $em->flush();
 
